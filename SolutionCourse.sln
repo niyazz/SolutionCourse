@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientTCP", "ClientTCP\ClientTCP.csproj", "{68E5A05E-8DBE-45A1-8A71-0C1A84939D42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientWPF", "ClientWPF\ClientWPF.csproj", "{9A88D029-DB1C-4837-9738-9E5DE416E4C4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESTER", "TESTER\TESTER.csproj", "{27C88319-98D0-4CF6-A2EE-34A874B3A5DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68E5A05E-8DBE-45A1-8A71-0C1A84939D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68E5A05E-8DBE-45A1-8A71-0C1A84939D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68E5A05E-8DBE-45A1-8A71-0C1A84939D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68E5A05E-8DBE-45A1-8A71-0C1A84939D42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A88D029-DB1C-4837-9738-9E5DE416E4C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A88D029-DB1C-4837-9738-9E5DE416E4C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A88D029-DB1C-4837-9738-9E5DE416E4C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A88D029-DB1C-4837-9738-9E5DE416E4C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C88319-98D0-4CF6-A2EE-34A874B3A5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C88319-98D0-4CF6-A2EE-34A874B3A5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C88319-98D0-4CF6-A2EE-34A874B3A5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C88319-98D0-4CF6-A2EE-34A874B3A5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C698333-A74E-4C68-8479-3E41BBB1EB72}
+	EndGlobalSection
+EndGlobal

@@ -6,17 +6,110 @@
         xmlns:local="clr-namespace:ClientWPF"
         xmlns:Properties="clr-namespace:ClientWPF.Properties" x:Class="ClientWPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="919" Width="595.5">
-    <Grid Margin="0,0,110,72">
+        Title="MainWindow" Height="700" Width="400"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize">
+    <!-- <Grid Margin="0,0,110,72">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="855" Margin="0,-19,0,0" VerticalAlignment="Top" Width="494" Source="C:\Users\Нияз\source\repos\ClientWPF\ClientWPF\Resourse\iphone2.png" RenderTransformOrigin="0.605,0.494"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="24" Margin="135,193,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="sendToServ" Content="Send" HorizontalAlignment="Left" Margin="135,222,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.093,0.45" Click="sendToServ_Click"/>
+        <Image x:Name="image_1" HorizontalAlignment="Left" Height="800" Margin="0,-19,0,0" VerticalAlignment="Top" Width="494" Source="C:\Users\nekot\source\repos\WpfApp1\WpfApp1\img\Crystal Clear.jpg" RenderTransformOrigin="0.605,0.494"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="855" Margin="0,-19,0,0" VerticalAlignment="Top" Width="494" Source="C:\Users\nekot\source\repos\SolutionCourse\ClientWPF\Resourse\iphone2.png" RenderTransformOrigin="0.605,0.494"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="30" Margin="130,500,0,0" Opacity="0.6" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="200" Padding="69,0,0,0" UseLayoutRounding="False"/>
+        <TextBox x:Name="Login" HorizontalAlignment="Left" Height="30" Margin="130,460,0,0" Opacity="0.6" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="200" Padding="69,0,0,0" UseLayoutRounding="False"/>
+        <Button x:Name="sendToServ" Height="30" Content="Sign in" HorizontalAlignment="Left" Margin="130,540,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.093,0.45" Click="sendToServ_Click"/>
         <TextBox x:Name="taked" HorizontalAlignment="Left" Height="60" Margin="135,300,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="153"/>
         <Label x:Name="label" Content="Enter message:" HorizontalAlignment="Left" Margin="116,167,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Copy" Content="Server answer:" HorizontalAlignment="Left" Margin="116,269,0,0" VerticalAlignment="Top" Width="120"/>
 
+    </Grid>-->
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Border CornerRadius="20" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#8EC5FC" Offset="0.1"/>
+                        <GradientStop Color="#792AF5" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="-40,-400,0,0">
+                <Image x:Name="image_1" HorizontalAlignment="Left" Height="780" Margin="20,20,0,0" VerticalAlignment="Top" Width="600" Source="C:\Users\nekot\source\repos\SolutionCourse\ClientWPF\Resourse\iphone2.png" RenderTransformOrigin="0.605,0.494"/>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Center">
+
+                <TextBlock Text="Welcome"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="22"
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+
+
+            <StackPanel Grid.Row="1" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="textBox" FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Text="Username"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25"
+                             Margin="63,0,0,0"/>
+
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <PasswordBox FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Password="Password"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25"
+                             Margin="63,0,0,0"/>
+
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                    <Button Width="100" Height="40" Content="LOGIN" Margin="60,0,60,0" Click="sendToServ_Click"/>
+                    <Button Width="100" Height="40" Content="REGISTER"/>
+                </StackPanel>
+
+            </StackPanel>
+            <TextBox x:Name="taked" HorizontalAlignment="Left" Height="20" Margin="90,300,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
+
+        </Grid>
     </Grid>
 </Window>

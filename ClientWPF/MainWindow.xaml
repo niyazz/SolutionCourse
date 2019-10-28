@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:ClientWPF"
         xmlns:Properties="clr-namespace:ClientWPF.Properties" x:Class="ClientWPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="400"
+        
+        Title="MainWindow" Width="370" Height="671"
         AllowsTransparency="True" Background="Transparent"
-        WindowStyle="None" ResizeMode="NoResize">
+        WindowStyle="None" ResizeMode="NoResize"
+        >
     <!-- <Grid Margin="0,0,110,72">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,29 +23,47 @@
         <TextBox x:Name="taked" HorizontalAlignment="Left" Height="60" Margin="135,300,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="153"/>
         <Label x:Name="label" Content="Enter message:" HorizontalAlignment="Left" Margin="116,167,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Copy" Content="Server answer:" HorizontalAlignment="Left" Margin="116,269,0,0" VerticalAlignment="Top" Width="120"/>
-
-    </Grid>-->
+-->
     <Grid>
+        <!--<StackPanel Background="White">
+            <Rectangle Fill="LightBlue" Width="58,6" Height="123,8" />
+        </StackPanel>-->
+        <Border Background="Gray" CornerRadius="30" Grid.RowSpan="2"/>
+        <Rectangle Fill="White"  RadiusX="30" RadiusY="30" RenderTransformOrigin="0.618,0.274" HorizontalAlignment="Center" Width="358" Height="662" VerticalAlignment="Center"/>
+        <Rectangle Fill="Black" RadiusX="11" RadiusY="11" Margin="152,49,152,614" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="Black" RadiusX="11" RadiusY="11" Margin="180,30,180,631" RenderTransformOrigin="-0.375,0.574" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="17.5"/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Fill="Gray" RadiusX="11" RadiusY="11" Margin="129,49,232,614"/>
+        <Rectangle Margin="33,100,30,77" >
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#8EC5FC" Offset="0.1"/>
+                    <GradientStop Color="#792AF5" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
-
-            <Border CornerRadius="20" Grid.RowSpan="2">
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="#8EC5FC" Offset="0.1"/>
-                        <GradientStop Color="#792AF5" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
-
-            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="-40,-400,0,0">
-                <Image x:Name="image_1" HorizontalAlignment="Left" Height="780" Margin="20,20,0,0" VerticalAlignment="Top" Width="600" Source="C:\Users\nekot\source\repos\SolutionCourse\ClientWPF\Resourse\iphone2.png" RenderTransformOrigin="0.605,0.494"/>
-            </StackPanel>
-
             <StackPanel VerticalAlignment="Center">
 
                 <TextBlock Text="Welcome"
@@ -54,13 +74,12 @@
                            HorizontalAlignment="Center"/>
             </StackPanel>
 
-
-
             <StackPanel Grid.Row="1" >
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="textBox" FontFamily="Helvetica"
+                    <TextBox x:Name="Login"
+                             FontFamily="Helvetica"
                              FontWeight="Light"
-                             Text="Username"
+                             Text="Login"
                              FontSize="20"
                              HorizontalAlignment="Center"
                              Foreground="White"
@@ -81,7 +100,8 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <PasswordBox FontFamily="Helvetica"
+                    <PasswordBox x:Name="Password" 
+                                 FontFamily="Helvetica"
                              FontWeight="Light"
                              Password="Password"
                              FontSize="20"
@@ -108,8 +128,18 @@
                 </StackPanel>
 
             </StackPanel>
-            <TextBox x:Name="taked" HorizontalAlignment="Left" Height="20" Margin="90,300,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
-
         </Grid>
+        <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top">
+            <Button.Template>
+                <ControlTemplate  TargetType="Button">
+                    <Grid>
+                        <Ellipse Fill="White" Stroke="DarkGray"
+    StrokeThickness="4" ></Ellipse>
+                        <Label Content="{TemplateBinding Content}" HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></Label>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
     </Grid>
 </Window>

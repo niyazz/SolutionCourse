@@ -26,7 +26,12 @@ namespace ClientWPF
         {
             InitializeComponent(); // second-commit
         }
-
+        public void Open()
+        {
+            Account account = new Account();
+            account.Show();
+            this.Close();
+        }
         private void sendToServ_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -37,15 +42,18 @@ namespace ClientWPF
                 NetworkStream stream = clientSocket.GetStream();
 
                 /* Берем текст из поля и отправляем на сервер */
-                string message = textBox.Text;
+                //string message = textBox.Text; //закоммитила З.
+                string login_message = Login.Text;                      //добавила З.
+                string password_message = Password.Password;            //добавила З.
                 StreamWriter writer = new StreamWriter(stream);
-                writer.WriteLine(message);
+                writer.WriteLine(login_message);                        //добавила З.
+                writer.WriteLine(password_message);                     //добавила З.
                 writer.Flush(); // мгновенная отправка
 
                 /* Получаем ответ с сервера и выводим в бокс */
                 StreamReader reader = new StreamReader(stream);
-                taked.Text = "Получен ответ: " + reader.ReadLine();
-
+                // taked.Text = "Получен ответ: " + reader.ReadLine(); //закоммитила З.
+                Open();
                 /* Закрываем все потоки */
                 reader.Close();
                 writer.Close();
@@ -53,7 +61,8 @@ namespace ClientWPF
             }
             catch
             {
-                taked.Text = "Отсутствует соединение с сервером";
+                //taked.Text = "Отсутствует соединение с сервером";  // закоммитила З.
+                MessageBox.Show("Неправильный логин или пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);//добавила З.
             }
            
         }

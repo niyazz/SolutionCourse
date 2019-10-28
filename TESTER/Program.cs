@@ -26,7 +26,8 @@ namespace TESTER
             NetworkStream stream = client.GetStream();
             StreamReader reader = new StreamReader(stream);
             string message = reader.ReadLine();
-            Console.WriteLine("Получено: " + message);
+            string message_passw = reader.ReadLine();//добавила З.
+            Console.WriteLine("Получено: " + message+" "+ message_passw);
 
             /*while (true) //цикловая отправка
              {

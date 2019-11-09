@@ -26,7 +26,7 @@ namespace ClientWPF
         {
             InitializeComponent(); // second-commit
         }
-        public void Open()
+        public void Open() // должна будет принимать объект залогиненного пользователя
         {
             Account account = new Account();
             account.Show();
@@ -41,35 +41,45 @@ namespace ClientWPF
         private void sendToServ_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                /* Будто создаем дом с названием "Any", и в нем квартира под 908 номером, нас интересует, то что происходит в этой квартире */
+            {             
                 TcpClient clientSocket = new TcpClient();
                 clientSocket.Connect("localhost", 908);
                 NetworkStream stream = clientSocket.GetStream();
 
-                /* Берем текст из поля и отправляем на сервер */
-                //string message = textBox.Text; //закоммитила З.
+               
                 User user = new User();
                 user.User_name = Login.Text;                     
-                user.User_password = Password.Password;            
+                user.User_password = Password.Password; 
+                
                 StreamWriter writer = new StreamWriter(stream);
                 writer.WriteLine(user.User_name);                        
                 writer.WriteLine(user.User_password);                     
-                writer.Flush(); // мгновенная отправка
+                writer.Flush(); 
 
                 /* Получаем ответ с сервера и выводим в бокс */
                 StreamReader reader = new StreamReader(stream);
-                // taked.Text = "Получен ответ: " + reader.ReadLine(); //закоммитила З.
-                Open();
-                /* Закрываем все потоки */
+                string message =  reader.ReadLine().ToString(); 
+
+                if(message.Contains("Ошибка!") == false)
+                {
+                    Open(); // тут отправка залогиненого пользователя                  
+                }
+                else
+                {
+                    Taken.Visibility = Visibility.Visible;
+                    Taken.Text = message;
+
+                }
+                        
                 reader.Close();
                 writer.Close();
                 stream.Close();
+
             }
             catch
             {
-                //taked.Text = "Отсутствует соединение с сервером";  // закоммитила З.
-                MessageBox.Show("Неправильный логин или пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);//добавила З.
+                Taken.Text = "Отсутствует соединение с сервером"; 
+                MessageBox.Show("Неправильный логин или пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
            
         }

@@ -128,6 +128,21 @@
                 </StackPanel>
 
             </StackPanel>
+            <TextBox x:Name="Taken"
+                             FontFamily="Helvetica"
+                             FontWeight="Bold"
+                             Text="Errors"
+                             FontSize="14"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="234"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Margin="64,228,72,52" Visibility="Hidden" TextAlignment="Justify"/>
         </Grid>
         <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top">
             <Button.Template>

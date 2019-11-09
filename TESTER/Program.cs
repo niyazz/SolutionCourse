@@ -6,47 +6,47 @@ using System.IO;
 
 namespace TESTER
 {
+
     class Program
-    {
+    { 
         static void Main(string[] args)
         {
             /* Будто создаем дом с названием "Any", и в нем квартира под 908 номером, нас интересует, то что происходит в этой квартире */
             TcpListener serverSocket = new TcpListener(IPAddress.Any, 908); //создаем сокет
             serverSocket.Start();
-
             /* Массивы байтов - то как сервер и клиент "общаются между собой", там будут строки, числа, картинки и т.д. - всё в байтах */
             byte[] data = new byte[256];
-
             /* Ждем подключения от какого-либо клиента */
-            Console.Write("Waiting for a connection... ");
-            TcpClient client = serverSocket.AcceptTcpClient();
-            Console.WriteLine("Connected!");
+            Console.WriteLine("Waiting for a connection... ");
 
-            /* Если поймали клиента - хватаем данные которые он передал */
-            NetworkStream stream = client.GetStream();
-            StreamReader reader = new StreamReader(stream);
-            string message = reader.ReadLine();
-            string message_passw = reader.ReadLine();//добавила З.
-            Console.WriteLine("Получено: " + message+" "+ message_passw);
+            while (true)
+            {
+                TcpClient client = serverSocket.AcceptTcpClient();
+                /* Если поймали клиента - хватаем данные которые он передал */
+                NetworkStream stream = client.GetStream();
+                StreamReader reader = new StreamReader(stream);
+                Database db = new Database();
 
-            /*while (true) //цикловая отправка
-             {
-              string message = reader.ReadLine();
-              Console.WriteLine("Получено: " + message);
-             }*/
 
-            /* Отправляем сообщение на клиент */
-            StreamWriter writer = new StreamWriter(stream);
-            Console.WriteLine("Отправлено: " + "Go");
-            writer.WriteLine("Go");
+                string log = reader.ReadLine();
+                string pass = reader.ReadLine();
+                Console.WriteLine("Получено: " + log + " " + pass);
 
-            /* Закрываем подключение клиента при нажатии какой-нибудь клавиши (при цикловой отправке)*/
-            writer.Close();
-            reader.Close();
-            stream.Close();
-            client.Close();
+                /* Отправляем сообщение на клиент */
+                string message = db.GetUser(log, pass);
+                StreamWriter writer = new StreamWriter(stream);
+                 writer.WriteLine(message);
+                 Console.WriteLine("Отправлено: " + message);
 
-            Console.ReadLine();
+                
+                /* Закрываем подключение клиента при нажатии какой-нибудь клавиши (при цикловой отправке)*/
+                writer.Close();
+                reader.Close();
+                stream.Close();
+                client.Close();
+              
+            }
+            
 
 
 
@@ -69,6 +69,13 @@ namespace TESTER
             //client.Receive(buffer);
 
             //Console.WriteLine(Encoding.ASCII.GetString(buffer));
+
+            /*while (true) //цикловая отправка
+             {
+              string message = reader.ReadLine();
+              Console.WriteLine("Получено: " + message);
+             }*/
+
         }
     }
 }

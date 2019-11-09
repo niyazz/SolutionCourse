@@ -28,4 +28,4 @@ ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [DF_Users_liters]  DEFAULT ((0)) FOR [
 GO
 
 
-  INSERT INTO [CourseWork].[dbo].[Users2] VALUES ('admin','John', 'Smith', '1988-10-10',100,'admin-surer@mail.com','12345');
+  INSERT INTO [CourseWork].[dbo].[Users] VALUES ('admin','John', 'Smith', '1988-10-10',100,'admin-surer@mail.com','12345');

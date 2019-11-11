@@ -22,56 +22,56 @@ namespace ClientWPF
     /// </summary>
     public partial class Sign_up : Window
     {
-        public static string str;
         public Sign_up()
         {
             InitializeComponent();
         }
-
         private void sign_up_button_Click(object sender, RoutedEventArgs e)
         {
-
-            User user = new User();
             try
-            {
-                /* Будто создаем дом с названием "Any", и в нем квартира под 908 номером, нас интересует, то что происходит в этой квартире */
+            {    
                 TcpClient clientSocket = new TcpClient();
                 clientSocket.Connect("localhost", 908);
                 NetworkStream stream = clientSocket.GetStream();
 
-                /* Берем текст из поля и отправляем на сервер */
-                //string message = textBox.Text; //закоммитила З.
-                //var ob1 = new User();
-                user.User_login = login_sp.Text;
-                user.User_password = password_sp.Text;
-                user.User_name = name.Text;
-                user.User_sername = sername.Text;
-                user.User_mail = email.Text;
-                user.User_birthday = birthday.Text;
+                User user = new User(
+                    "REGISTRATION",
+                    login_sp.Text,
+                    name.Text, 
+                    sername.Text,
+                    birthday.Text,
+                    0,
+                    email.Text,
+                    password_sp.Text
+                    );
 
-               
-                var serialized1 = JsonConvert.SerializeObject(user, new JsonSerializerSettings()
-                {
-                    TypeNameHandling = TypeNameHandling.Objects
-                });
-                Console.WriteLine(serialized1);
+                string json = JsonConvert.SerializeObject(user);
+
                 StreamWriter writer = new StreamWriter(stream);
-                writer.WriteLine(serialized1);
+                writer.WriteLine(json);
+                writer.Flush(); 
 
-                writer.Flush(); // мгновенная отправка
-                str = serialized1;
-                /* Получаем ответ с сервера и выводим в бокс */
                 StreamReader reader = new StreamReader(stream);
-                // taked.Text = "Получен ответ: " + reader.ReadLine(); //закоммитила З.
-                MessageBox.Show("Вы зарегистрировались!");
-                /* Закрываем все потоки */
+                User result= JsonConvert.DeserializeObject<User>(reader.ReadLine());
+// объект юзера, юзер может быть залогиненым (получены все его данные) или незалогиненым(получены ошибки) и 
+// зарегистрированным (получено сообщение об успехе 'TYPE = REGISTERED') или незарегистрированным (получено сообщение об успехе 'TYPE = UNREGISTERED')
+
+                switch (result.Type)
+                {
+                    case "REGISTERED":
+                        MessageBox.Show(result.Type);
+                        break;
+                    case "UNREGISTERED":
+                        throw new Exception();
+                        break;
+                }
+                
                 reader.Close();
                 writer.Close();
                 stream.Close();
             }
             catch
             {
-                //taked.Text = "Отсутствует соединение с сервером";  // закоммитила З.
                 MessageBox.Show("Такой логин уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

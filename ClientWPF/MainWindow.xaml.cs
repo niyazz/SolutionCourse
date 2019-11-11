@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,17 +47,12 @@ namespace ClientWPF
                 clientSocket.Connect("localhost", 908);
                 NetworkStream stream = clientSocket.GetStream();
 
-               
-                User user = new User();
-                user.User_login = Login.Text;                     
-                user.User_password = Password.Password; 
-                
+                User user = new User("SIGNIN", Login.Text, Password.Password);
+                string json = JsonConvert.SerializeObject(user);
                 StreamWriter writer = new StreamWriter(stream);
-                writer.WriteLine(user.User_login);                        
-                writer.WriteLine(user.User_password);                     
+                writer.WriteLine(json);
                 writer.Flush(); 
 
-                /* Получаем ответ с сервера и выводим в бокс */
                 StreamReader reader = new StreamReader(stream);
                 string message =  reader.ReadLine().ToString(); 
 
@@ -68,7 +64,6 @@ namespace ClientWPF
                 {
                     Taken.Visibility = Visibility.Visible;
                     Taken.Text = message;
-
                 }
                         
                 reader.Close();

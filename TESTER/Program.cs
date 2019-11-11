@@ -11,42 +11,38 @@ namespace TESTER
     class Program
     { 
         static void Main(string[] args)
-        {
-            /* Будто создаем дом с названием "Any", и в нем квартира под 908 номером, нас интересует, то что происходит в этой квартире */
+        {          
             TcpListener serverSocket = new TcpListener(IPAddress.Any, 908); //создаем сокет
-            serverSocket.Start();
-            /* Массивы байтов - то как сервер и клиент "общаются между собой", там будут строки, числа, картинки и т.д. - всё в байтах */
+            serverSocket.Start();        
             byte[] data = new byte[256];
-            /* Ждем подключения от какого-либо клиента */
             Console.WriteLine("Waiting for a connection... ");
 
             while (true)
             {
                 TcpClient client = serverSocket.AcceptTcpClient();
-
-                /* Если поймали клиента - хватаем данные которые он передал */
                 NetworkStream stream = client.GetStream();
                 StreamReader reader = new StreamReader(stream);
                 Database db = new Database();
-                //вариант приема объекта json и его расшифровки
-                //var deserialized = JsonConvert.DeserializeObject(str, new JsonSerializerSettings()
-                //{
-                //    TypeNameHandling = TypeNameHandling.Objects
-                //});
-                //Console.WriteLine(deserialized.GetType().FullName);
+         
+                string json = reader.ReadLine();
+                //Console.WriteLine(json);
+                User query = JsonConvert.DeserializeObject<User>(json);
+                string operationResult = "";
 
-                string log = reader.ReadLine();
-                string pass = reader.ReadLine();
-                Console.WriteLine("Получено: " + log + " " + pass);
+                switch (query.Type)
+                {
+                    case "REGISTRATION":
+                        operationResult = db.RegisterUser(query);
+                        break;
+                    case "SIGNIN":
+                        operationResult = db.GetUser(query);
+                        break;
+                }
 
-                /* Отправляем сообщение на клиент */
-                string message = db.GetUser(log, pass);
                 StreamWriter writer = new StreamWriter(stream);
-                 writer.WriteLine(message);
-                 Console.WriteLine("Отправлено: " + message);
-
+                writer.WriteLine(operationResult);
+                Console.WriteLine("Отправлено: " + operationResult);
                 
-                /* Закрываем подключение клиента при нажатии какой-нибудь клавиши (при цикловой отправке)*/
                 writer.Close();
                 reader.Close();
                 stream.Close();

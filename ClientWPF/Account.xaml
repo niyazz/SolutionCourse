@@ -48,13 +48,12 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel VerticalAlignment="Center">
-
                 <TextBlock Text="Личный кабинет"
                            FontWeight="Light"
                            FontFamily="helvetica"
                            FontSize="22"
                            Foreground="White"
-                           HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center" Margin="106,0,105,0"/>
                 <TextBlock Text="        Имя пользователя:"
                            FontWeight="Light"
                            FontFamily="helvetica"
@@ -78,9 +77,11 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Content="Настройки" HorizontalAlignment="Left" Margin="129,258,0,0" VerticalAlignment="Top" Width="160"/>
-        <Button Content="Сообщества" HorizontalAlignment="Left" Margin="129,296,0,0" VerticalAlignment="Top" Width="160"/>
-        <Button Content="Сообщения" HorizontalAlignment="Left" Margin="129,335,0,0" VerticalAlignment="Top" Width="160"/>
-        <Button Content="Литры" HorizontalAlignment="Left" Margin="129,377,0,0" VerticalAlignment="Top" Width="160"/>
+        <Button Content="Настройки" HorizontalAlignment="Left" Margin="129,451,0,0" VerticalAlignment="Top" Width="160"/>
+        <Button Content="Сообщества" HorizontalAlignment="Left" Margin="129,476,0,0" VerticalAlignment="Top" Width="160"/>
+        <Button Content="Сообщения" HorizontalAlignment="Left" Margin="129,501,0,0" VerticalAlignment="Top" Width="160"/>
+        <Button Content="Литры" HorizontalAlignment="Left" Margin="129,526,0,0" VerticalAlignment="Top" Width="160"/>
+        <Button Content="Автомобили" HorizontalAlignment="Left" Margin="129,426,0,0" VerticalAlignment="Top" Width="160"/>
+        <Button Content="Друзья" HorizontalAlignment="Left" Margin="129,401,0,0" VerticalAlignment="Top" Width="160"/>
     </Grid>
 </Window>

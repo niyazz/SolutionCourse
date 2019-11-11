@@ -72,11 +72,19 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="Придумайте логин" HorizontalAlignment="Left" Margin="52,188,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="login_sp" HorizontalAlignment="Left" Height="23" Margin="52,219,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Придумайте пароль" HorizontalAlignment="Left" Margin="52,247,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="password_sp" HorizontalAlignment="Left" Height="23" Margin="52,278,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button  x:Name="sign_up_button" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="52,530,0,0" VerticalAlignment="Top" Width="271" Height="34" Click="sign_up_button_Click"/>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="52,188,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="login_sp" HorizontalAlignment="Left" Height="23" Margin="52,219,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="52,247,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="password_sp" HorizontalAlignment="Left" Height="23" Margin="52,278,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
+        <Button  x:Name="sign_up_button" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="52,549,0,0" VerticalAlignment="Top" Width="271" Height="34" Click="sign_up_button_Click"/>
+        <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="52,327,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
+        <Label Content=" Имя" HorizontalAlignment="Left" Margin="52,301,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="birthday" HorizontalAlignment="Left" Height="23" Margin="52,422,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
+        <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="52,396,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="53,467,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
+        <Label Content="e-mail" HorizontalAlignment="Left" Margin="52,436,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="sername" HorizontalAlignment="Left" Height="23" Margin="52,373,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
+        <Label Content=" Фамилия" HorizontalAlignment="Left" Margin="53,342,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

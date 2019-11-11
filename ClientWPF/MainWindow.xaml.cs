@@ -48,11 +48,11 @@ namespace ClientWPF
 
                
                 User user = new User();
-                user.User_name = Login.Text;                     
+                user.User_login = Login.Text;                     
                 user.User_password = Password.Password; 
                 
                 StreamWriter writer = new StreamWriter(stream);
-                writer.WriteLine(user.User_name);                        
+                writer.WriteLine(user.User_login);                        
                 writer.WriteLine(user.User_password);                     
                 writer.Flush(); 
 

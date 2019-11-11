@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Text;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace TESTER
 {
@@ -22,11 +23,17 @@ namespace TESTER
             while (true)
             {
                 TcpClient client = serverSocket.AcceptTcpClient();
+
                 /* Если поймали клиента - хватаем данные которые он передал */
                 NetworkStream stream = client.GetStream();
                 StreamReader reader = new StreamReader(stream);
                 Database db = new Database();
-
+                //вариант приема объекта json и его расшифровки
+                //var deserialized = JsonConvert.DeserializeObject(str, new JsonSerializerSettings()
+                //{
+                //    TypeNameHandling = TypeNameHandling.Objects
+                //});
+                //Console.WriteLine(deserialized.GetType().FullName);
 
                 string log = reader.ReadLine();
                 string pass = reader.ReadLine();

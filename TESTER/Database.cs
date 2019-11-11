@@ -13,7 +13,7 @@ namespace TESTER
         public string connectString { get; set; }
         public Database()
         {
-            this.connectString = @"Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True";
+            this.connectString = @"Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True";
             // поменяйте на свой путь
         }
 

@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Newtonsoft.Json;
 namespace ClientWPF
 {
     /// <summary>
@@ -22,6 +22,7 @@ namespace ClientWPF
     /// </summary>
     public partial class Sign_up : Window
     {
+        public static string str;
         public Sign_up()
         {
             InitializeComponent();
@@ -29,6 +30,8 @@ namespace ClientWPF
 
         private void sign_up_button_Click(object sender, RoutedEventArgs e)
         {
+
+            User user = new User();
             try
             {
                 /* Будто создаем дом с названием "Any", и в нем квартира под 908 номером, нас интересует, то что происходит в этой квартире */
@@ -38,13 +41,25 @@ namespace ClientWPF
 
                 /* Берем текст из поля и отправляем на сервер */
                 //string message = textBox.Text; //закоммитила З.
-                string User_name_sp = login_sp.Text;
-                string User_password_sp = password_sp.Text;
-                StreamWriter writer = new StreamWriter(stream);
-                writer.WriteLine(login_sp.Text);
-                writer.WriteLine(password_sp.Text);
-                writer.Flush(); // мгновенная отправка
+                //var ob1 = new User();
+                user.User_login = login_sp.Text;
+                user.User_password = password_sp.Text;
+                user.User_name = name.Text;
+                user.User_sername = sername.Text;
+                user.User_mail = email.Text;
+                user.User_birthday = birthday.Text;
 
+               
+                var serialized1 = JsonConvert.SerializeObject(user, new JsonSerializerSettings()
+                {
+                    TypeNameHandling = TypeNameHandling.Objects
+                });
+                Console.WriteLine(serialized1);
+                StreamWriter writer = new StreamWriter(stream);
+                writer.WriteLine(serialized1);
+
+                writer.Flush(); // мгновенная отправка
+                str = serialized1;
                 /* Получаем ответ с сервера и выводим в бокс */
                 StreamReader reader = new StreamReader(stream);
                 // taked.Text = "Получен ответ: " + reader.ReadLine(); //закоммитила З.
@@ -57,7 +72,7 @@ namespace ClientWPF
             catch
             {
                 //taked.Text = "Отсутствует соединение с сервером";  // закоммитила З.
-                MessageBox.Show("Такой логин уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);//добавила З.
+                MessageBox.Show("Такой логин уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -98,9 +98,9 @@
                         Opacity="0.5"/>
 
 
-
-                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <PasswordBox x:Name="Password" 
+                
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                        <PasswordBox x:Name="Password" 
                                  FontFamily="Helvetica"
                              FontWeight="Light"
                              Password="Password"
@@ -113,19 +113,76 @@
                              HorizontalContentAlignment="Left"
                              Opacity="0.5"
                              Height="25"
-                             Margin="63,0,0,0"/>
+                             Margin="63,0,0,0" VerticalAlignment="Top"/>
 
-                </StackPanel>
+                    </StackPanel>
                 <Border Width="250"
                         Height="2"
                         Background="White"
                         Opacity="0.5"/>
+                   
 
 
-                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
-                    <Button Width="100" Height="40" Content="LOGIN" Margin="60,0,60,0" Click="sendToServ_Click"/>
-                    <Button Width="100" Height="40" Content="REGISTER" Click="Button_Click"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Height="200" Margin="0,0,40,0" Width="285" >
+                    <StackPanel.Resources>
+                        <!-- Шаблон для кнопок -->
+                        <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
+                            <Border BorderBrush="#333" BorderThickness="1" 
+                                TextBlock.Foreground="#ddd" Margin="0 0 10 0" MaxHeight="30"
+                                MinWidth="80" Padding="5" Name="myBorder">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#676767" Offset="0"></GradientStop>
+                                        <GradientStop Color="#474747" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                              VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="myBorder" Property="Background">
+                                        <Setter.Value>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#777777" Offset="0"></GradientStop>
+                                                <GradientStop Color="#575757" Offset="1"></GradientStop>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="myBorder" Property="Cursor" Value="Hand"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="myBorder" Property="Background">
+                                        <Setter.Value>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#939292" Offset="0"></GradientStop>
+                                                <GradientStop Color="#575757" Offset="1"></GradientStop>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="myBorder" Property="Cursor" Value="Hand"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="myBorder" Property="Background">
+                                        <Setter.Value>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                <GradientStop Color="#444" Offset="0"></GradientStop>
+                                                <GradientStop Color="#222" Offset="1"></GradientStop>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="myBorder" Property="Opacity" Value="0.4"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </StackPanel.Resources>
+                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Width="140
+                            " Content="LOGIN" Click="sendToServ_Click"/>
+                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" Content="REGISTER" Click="Button_Click" Width="145"/>
                 </StackPanel>
+                <!--<Button Width="100" Height="40" Content="LOGIN" Margin="60,0,60,0" Click="sendToServ_Click"/>-->
+                <!--<Button Width="100" Height="40" Content="REGISTER" Click="Button_Click"/>-->
+
 
             </StackPanel>
             <TextBox x:Name="Taken"

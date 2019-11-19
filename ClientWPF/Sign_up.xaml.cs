@@ -22,22 +22,29 @@ namespace ClientWPF
     /// </summary>
     public partial class Sign_up : Window
     {
+        public bool направление = false;
         public Sign_up()
         {
             InitializeComponent();
+
         }
-        private void sign_up_button_Click(object sender, RoutedEventArgs e)
+        public void Open_MainWindow()
+        {
+            MainWindow window = new MainWindow();
+            window.Show();
+            this.Close();
+        }
+        void Activity1()
         {
             try
-            {    
+            {
                 TcpClient clientSocket = new TcpClient();
                 clientSocket.Connect("localhost", 908);
                 NetworkStream stream = clientSocket.GetStream();
-
                 User user = new User(
                     "REGISTRATION",
                     login_sp.Text,
-                    name.Text, 
+                    name.Text,
                     sername.Text,
                     birthday.Text,
                     0,
@@ -49,12 +56,12 @@ namespace ClientWPF
 
                 StreamWriter writer = new StreamWriter(stream);
                 writer.WriteLine(json);
-                writer.Flush(); 
+                writer.Flush();
 
                 StreamReader reader = new StreamReader(stream);
-                User result= JsonConvert.DeserializeObject<User>(reader.ReadLine());
-// объект юзера, юзер может быть залогиненым (получены все его данные) или незалогиненым(получены ошибки) и 
-// зарегистрированным (получено сообщение об успехе 'TYPE = REGISTERED') или незарегистрированным (получено сообщение об успехе 'TYPE = UNREGISTERED')
+                User result = JsonConvert.DeserializeObject<User>(reader.ReadLine());
+                // объект юзера, юзер может быть залогиненым (получены все его данные) или незалогиненым(получены ошибки) и 
+                // зарегистрированным (получено сообщение об успехе 'TYPE = REGISTERED') или незарегистрированным (получено сообщение об успехе 'TYPE = UNREGISTERED')
 
                 switch (result.Type)
                 {
@@ -65,15 +72,109 @@ namespace ClientWPF
                         throw new Exception();
                         break;
                 }
-                
+
                 reader.Close();
                 writer.Close();
                 stream.Close();
+                Open_MainWindow();
             }
             catch
             {
-                MessageBox.Show("Такой логин уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Введите корректные данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void sign_up_button_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime d1 = new DateTime(2012, 12, 31);
+            if (!string.IsNullOrEmpty(login_sp.Text))//Проверка заполнения поля с логином
+            {
+                if (login_sp.Text.Length <= 10) //Проверка заполнения поля с логином
+                {
+                    if (!string.IsNullOrEmpty(name.Text))
+                    {
+                        if (name.Text.Length <= 10)
+                        {
+                            if (!string.IsNullOrEmpty(sername.Text))
+                            {
+                                if (sername.Text.Length <= 10)
+                                {
+                                    if (!string.IsNullOrEmpty(data.Text))
+                                    {
+                                        if (data.SelectedDate < d1)
+                                        {
+                                            if (!string.IsNullOrEmpty(email.Text))
+                                            {
+                                                if (email.Text.Length <= 10)
+                                                {
+                                                    if (!string.IsNullOrEmpty(password_sp.Text))
+                                                    {
+                                                        if (password_sp.Text.Length <= 10)
+                                                        {
+                                                            //sign_up_button.IsEnabled = true;
+                                                            направление = true;
+                                                        }
+                                                        else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                        {
+                                                            MessageBox.Show("Слишком длинный пароль!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                        }
+                                                    }
+                                                    else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                    {
+                                                        MessageBox.Show("Введите пароль!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                    }
+                                                }
+                                                else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                {
+                                                    MessageBox.Show("Слишком длинный адресс электронной почты!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                }
+                                            }
+                                            else //Если нет, он увидит сообщение, что что-то пошло не так
+                                            {
+                                                MessageBox.Show("Введите адресс электронной почты!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                            }
+                                        }
+                                        else //Если нет, он увидит сообщение, что что-то пошло не так
+                                        {
+                                            MessageBox.Show("Дата вашего рождения должна быть не позже 2012 года!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                        }
+                                    }
+                                    else //Если нет, он увидит сообщение, что что-то пошло не так
+                                    {
+                                        MessageBox.Show("Выберете дату вашего рождения!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    }
+                                }
+                                else //Если нет, он увидит сообщение, что что-то пошло не так
+                                {
+                                    MessageBox.Show("Слишком длинная у вас фамилия,пожалуйста,сократите!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                }
+                            }
+                            else //Если нет, он увидит сообщение, что что-то пошло не так
+                            {
+                                MessageBox.Show("Введите вашу фамилию!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
+                        }
+                        else //Если нет, он увидит сообщение, что что-то пошло не так
+                        {
+                            MessageBox.Show("Слишком длинное у вас имя,пожалуйста,сократите!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    else //Если нет, он увидит сообщение, что что-то пошло не так
+                    {
+                        MessageBox.Show("Введите ваше имя!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else //Если нет, он увидит сообщение, что что-то пошло не так
+                {
+                    MessageBox.Show("Слишком длинный у вас логин,пожалуйста,сократите!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else //Если нет, он увидит сообщение, что что-то пошло не так
+            {
+                MessageBox.Show("Введите ваш логин!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (направление == true)
+                Activity1();
+        }
+        
     }
 }

@@ -9,7 +9,7 @@
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
         >
-    <Grid>
+    <Grid RenderTransformOrigin="0.5,0.44">
 
         <Border Background="Gray" CornerRadius="30" Grid.RowSpan="2"/>
         <Rectangle Fill="White"  RadiusX="30" RadiusY="30" RenderTransformOrigin="0.618,0.274" HorizontalAlignment="Center" Width="358" Height="662" VerticalAlignment="Center"/>
@@ -34,7 +34,7 @@
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Fill="Gray" RadiusX="11" RadiusY="11" Margin="129,49,232,614"/>
-        <Rectangle Margin="33,100,30,77" >
+        <Rectangle Margin="33,100,30,77" RenderTransformOrigin="0.414,0.506" >
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="#8EC5FC" Offset="0.1"/>
@@ -48,13 +48,12 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel VerticalAlignment="Center">
-
                 <TextBlock Text="Регистрация:"
                            FontWeight="Light"
                            FontFamily="helvetica"
                            FontSize="22"
                            Foreground="White"
-                           HorizontalAlignment="Center"/>
+                           HorizontalAlignment="Center" Margin="123,0" RenderTransformOrigin="0.496,-0.385"/>
 
             </StackPanel>
 
@@ -72,19 +71,46 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label Content="Логин" HorizontalAlignment="Left" Margin="52,188,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="login_sp" HorizontalAlignment="Left" Height="23" Margin="52,219,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="52,247,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="password_sp" HorizontalAlignment="Left" Height="23" Margin="52,278,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
-        <Button  x:Name="sign_up_button" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="52,549,0,0" VerticalAlignment="Top" Width="271" Height="34" Click="sign_up_button_Click"/>
-        <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="52,327,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
-        <Label Content=" Имя" HorizontalAlignment="Left" Margin="52,301,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="birthday" HorizontalAlignment="Left" Height="23" Margin="52,422,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
-        <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="52,396,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="53,467,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
-        <Label Content="e-mail" HorizontalAlignment="Left" Margin="52,436,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="sername" HorizontalAlignment="Left" Height="23" Margin="52,373,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="251"/>
-        <Label Content=" Фамилия" HorizontalAlignment="Left" Margin="53,342,0,0" VerticalAlignment="Top"/>
+        <Label  Content="Логин:" Foreground="White" HorizontalAlignment="Left" Margin="53,188,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="login_sp" HorizontalAlignment="Left" Height="23" Margin="53,214,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+
+        <Label Content="Пароль:" Foreground="White" HorizontalAlignment="Left" Margin="52,237,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="password_sp" HorizontalAlignment="Left" Height="23" Margin="53,263,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+
+        <Button  x:Name="sign_up_button" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="71,545,0,0" VerticalAlignment="Top" Width="244" Height="34" Click="sign_up_button_Click" AutomationProperties.Name="Reg" />
+        <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="53,312,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content=" Имя:" Foreground="White" HorizontalAlignment="Left" Margin="53,284,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="birthday" HorizontalAlignment="Left" Height="23" Margin="53,403,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content="Дата рождения:" Foreground="White" HorizontalAlignment="Left" Margin="53,379,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="53,452,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content="e-mail:" Foreground="White" HorizontalAlignment="Left" Margin="53,431,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.731"/>
+        <TextBox x:Name="sername" HorizontalAlignment="Left" Height="23" Margin="53,356,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content=" Фамилия:" Foreground="White" HorizontalAlignment="Left" Margin="52,335,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="data" HorizontalAlignment="Left" Margin="53,485,0,0" VerticalAlignment="Top"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,235,66,434"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,284,66,385"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="52,426,67,243"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,478,66,191"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="52,379,67,290"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="52,335,67,334"/>
 
     </Grid>
 </Window>

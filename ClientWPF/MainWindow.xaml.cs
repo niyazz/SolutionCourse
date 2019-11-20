@@ -27,13 +27,13 @@ namespace ClientWPF
         {
             InitializeComponent(); // second-commit
         }
-        public void Open() // должна будет принимать объект залогиненного пользователя
+        public void Open(User user) // должна будет принимать объект залогиненного пользователя
         {
-            Account account = new Account();
+            Account account = new Account(user);
             account.Show();
             this.Close();
         }
-        public void Open_sp()
+            public void Open_sp()
         {
             Sign_up sign = new Sign_up();
             sign.Show();
@@ -58,7 +58,9 @@ namespace ClientWPF
 
                 if(message.Contains("Ошибка!") == false)
                 {
-                    Open(); // тут отправка залогиненого пользователя                  
+                    User user_1 = JsonConvert.DeserializeObject<User>(message);
+                    Open(user_1); // тут отправка залогиненого пользователя                  
+
                 }
                 else
                 {

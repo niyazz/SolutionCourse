@@ -175,6 +175,12 @@ namespace ClientWPF
             if (направление == true)
                 Activity1();
         }
-        
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
+        }
     }
 }

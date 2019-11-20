@@ -59,7 +59,7 @@
 
 
         </Grid>
-        <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top">
+        <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate  TargetType="Button">
                     <Grid>

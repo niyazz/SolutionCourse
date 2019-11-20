@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClientWPF
 {
-    class User
+    public class User
     {
         public string User_login { get; set; }
         public string User_password { get; set; }

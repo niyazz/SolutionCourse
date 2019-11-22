@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace ClientWPF
 {
@@ -46,26 +47,28 @@ namespace ClientWPF
                 TcpClient clientSocket = new TcpClient();
                 clientSocket.Connect("localhost", 908);
                 NetworkStream stream = clientSocket.GetStream();
-
-                User user = new User("SIGNIN", Login.Text, Password.Password);
-                string json = JsonConvert.SerializeObject(user);
+                
+                User user = new User(Login.Text, Password.Password);
+                Query query = new Query("SIGNIN", user);
+                
+                string json = JsonConvert.SerializeObject(query);
                 StreamWriter writer = new StreamWriter(stream);
                 writer.WriteLine(json);
                 writer.Flush(); 
 
                 StreamReader reader = new StreamReader(stream);
-                string message =  reader.ReadLine().ToString(); 
+                string answer =  reader.ReadLine().ToString(); 
 
-                if(message.Contains("Ошибка!") == false)
+                if(answer.Contains("Ошибка!") == false)
                 {
-                    User user_1 = JsonConvert.DeserializeObject<User>(message);
-                    Open(user_1); // тут отправка залогиненого пользователя                  
+                    Query queryResult = JsonConvert.DeserializeObject<Query>(answer);
+                    Open(queryResult.User); // тут отправка залогиненого пользователя                  
 
                 }
                 else
                 {
                     Taken.Visibility = Visibility.Visible;
-                    Taken.Text = message;
+                    Taken.Text = answer;
                 }
                         
                 reader.Close();

@@ -21,10 +21,15 @@ namespace ClientWPF
     public partial class Messages : Window
     {
         public User user;
-        public Messages(User user)
+        public Messages(User user, Query q)
         {
             InitializeComponent();
             this.user = user;
+            mes_t_sb.Text = "";
+            for (int i = 0; i < q.Messages.Count; i++)
+            {
+                mes_t_sb.Text += $"ОТ {q.Messages[i].senderName} - { q.Messages[i].Text} \n";
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

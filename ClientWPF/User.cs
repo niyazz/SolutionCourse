@@ -15,25 +15,18 @@ namespace ClientWPF
         public string User_mail { get; set; }
         public string User_birthday { get; set; }
         public int User_litrs { get; set; }
-        public string Type { get; set; } // TYPE OF QUERY
 
         public User()
         {
 
         }
-        public User(string type)
+        public User(string login, string pass)
         {
-            this.Type = type;
-        }
-        public User(string type, string login, string pass)
-        {
-            this.Type = type;
             this.User_login = login;
             this.User_password = pass;
         }
-        public User(string type, string login, string name, string sername, string birthday, int litrs, string mail, string pass)
+        public User(string login, string name, string sername, string birthday, int litrs, string mail, string pass)
         {
-            this.Type = type;
             this.User_login = login;
             this.User_password = pass;
             this.User_name = name;

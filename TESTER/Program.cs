@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 
 namespace TESTER
 {
-
     class Program
     { 
         static void Main(string[] args)
@@ -23,19 +22,23 @@ namespace TESTER
                 NetworkStream stream = client.GetStream();
                 StreamReader reader = new StreamReader(stream);
                 Database db = new Database();
-         
+                
                 string json = reader.ReadLine();
-                //Console.WriteLine(json);
-                User query = JsonConvert.DeserializeObject<User>(json);
+                Console.WriteLine(json);
+                Console.ReadLine();
+                Query query = JsonConvert.DeserializeObject<Query>(json);
                 string operationResult = "";
 
                 switch (query.Type)
                 {
                     case "REGISTRATION":
-                        operationResult = db.RegisterUser(query);
+                        operationResult = db.RegisterUser(query.User);
                         break;
                     case "SIGNIN":
-                        operationResult = db.GetUser(query);
+                        operationResult = db.GetUser(query.User);
+                        break;
+                    case "TAKEMESSAGES":
+                        operationResult = db.TakeMessages(query.User);
                         break;
                 }
 

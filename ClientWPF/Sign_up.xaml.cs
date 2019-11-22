@@ -41,8 +41,7 @@ namespace ClientWPF
                 TcpClient clientSocket = new TcpClient();
                 clientSocket.Connect("localhost", 908);
                 NetworkStream stream = clientSocket.GetStream();
-                User user = new User(
-                    "REGISTRATION",
+                User user = new User(  
                     login_sp.Text,
                     name.Text,
                     sername.Text,
@@ -52,14 +51,15 @@ namespace ClientWPF
                     password_sp.Text
                     );
 
-                string json = JsonConvert.SerializeObject(user);
+                Query query = new Query("REGISTRATION", user);
+                string json = JsonConvert.SerializeObject(query);
 
                 StreamWriter writer = new StreamWriter(stream);
                 writer.WriteLine(json);
                 writer.Flush();
 
                 StreamReader reader = new StreamReader(stream);
-                User result = JsonConvert.DeserializeObject<User>(reader.ReadLine());
+                Query result = JsonConvert.DeserializeObject<Query>(reader.ReadLine());
                 // объект юзера, юзер может быть залогиненым (получены все его данные) или незалогиненым(получены ошибки) и 
                 // зарегистрированным (получено сообщение об успехе 'TYPE = REGISTERED') или незарегистрированным (получено сообщение об успехе 'TYPE = UNREGISTERED')
 

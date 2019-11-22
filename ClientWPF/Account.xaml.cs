@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using Newtonsoft.Json;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -31,9 +34,32 @@ namespace ClientWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Messages messages = new Messages(user);
-            messages.Show();
-            this.Close();
+            TcpClient clientSocket = new TcpClient();
+            clientSocket.Connect("localhost", 908);
+            NetworkStream stream = clientSocket.GetStream();
+            StreamWriter writer = new StreamWriter(stream);
+            Query query = new Query("TAKEMESSAGES", user);
+
+            string json = JsonConvert.SerializeObject(query);
+            writer.WriteLine(json);
+            writer.Flush();
+
+            StreamReader reader = new StreamReader(stream);
+            string answer = reader.ReadLine().ToString();
+
+            if (answer.Contains("Ошибка!") == false)
+            {
+                Query queryResult = JsonConvert.DeserializeObject<Query>(answer);
+
+                Messages messages = new Messages(user, queryResult);
+                messages.Show();
+                this.Close();
+            }
+
+
+
+           
+           
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@ namespace TESTER
         public string connectString { get; set; }
         public Database()
         {
-            this.connectString = @"Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True";
+            this.connectString = @"Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True";
             // Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True - Z
             // Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True - N
         }
@@ -32,7 +32,6 @@ namespace TESTER
                 if (reader.Read())
                 {
                     User logined = new User(
-                        "LOGINED",
                         reader[1].ToString(),
                         reader[2].ToString(),
                         reader[3].ToString(),
@@ -42,7 +41,8 @@ namespace TESTER
                         reader[7].ToString()
                         );
 
-                    json = JsonConvert.SerializeObject(logined);
+                    Query responce = new Query("LOGINED", logined);
+                    json = JsonConvert.SerializeObject(responce);
                 }
                 else
                     error = "Ошибка! Такого пользователя не существует";
@@ -76,7 +76,7 @@ namespace TESTER
                 SqlCommand command = new SqlCommand(query, connection);
                 if(command.ExecuteNonQuery() == 1)
                 {
-                    User registered = new User("REGISTERED");
+                    Query registered = new Query("REGISTERED");
                     json = JsonConvert.SerializeObject(registered);
                 }
                 connection.Close();
@@ -88,6 +88,53 @@ namespace TESTER
 
             return json;
 
+        }
+        public string TakeMessages(User user)
+        {
+            string json = null;
+            string error = null;
+            string query = $"SELECT sName, time, text FROM Messages WHERE aName = '{user.User_name}'";
+            List<Message> messages = new List<Message>();
+
+         
+            SqlConnection connection = new SqlConnection(connectString);
+            try
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+
+                        messages.Add(new Message(
+                           reader[0].ToString(),
+                           Convert.ToDateTime(reader[1].ToString()),
+                           reader[2].ToString()
+                           ));
+                    }
+                    Query responce = new Query("USERMESSAGES", messages);
+
+                    json = JsonConvert.SerializeObject(responce);
+           
+                }            
+                else
+                    error = "Ошибка! У вас нет сообщений!";
+                    reader.Close();
+                    connection.Close();
+            }
+            catch
+            {
+                error = "Ошибка! Сервер не смог получить данные из БД";
+                connection.Close();
+            }
+            return json != null ? json : error;
         }
     }
 

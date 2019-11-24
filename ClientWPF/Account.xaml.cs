@@ -27,7 +27,7 @@ namespace ClientWPF
         public Account(User user)
         {
             InitializeComponent();
-            name_1.Content = user.User_name+" "+ user.User_sername;
+            name_1.Content = user.User_name + " " + user.User_sername;
             this.user = user;
 
         }
@@ -58,8 +58,8 @@ namespace ClientWPF
 
 
 
-           
-           
+
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -69,6 +69,15 @@ namespace ClientWPF
             main.Show();
             this.Close();
 
+        }
+
+        
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            litrs litrs = new litrs(user);
+            litrs.Show();
+            this.Close();
         }
     }
 }

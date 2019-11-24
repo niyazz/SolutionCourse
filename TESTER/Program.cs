@@ -25,7 +25,7 @@ namespace TESTER
                 
                 string json = reader.ReadLine();
                 Console.WriteLine(json);
-                Console.ReadLine();
+               // Console.ReadLine();
                 Query query = JsonConvert.DeserializeObject<Query>(json);
                 string operationResult = "";
 
@@ -40,6 +40,10 @@ namespace TESTER
                     case "TAKEMESSAGES":
                         operationResult = db.TakeMessages(query.User);
                         break;
+                    case "UPDATE":
+                        operationResult = db.Change_litrs(query.User);
+                        break;
+
                 }
 
                 StreamWriter writer = new StreamWriter(stream);

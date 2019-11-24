@@ -12,7 +12,7 @@ namespace TESTER
         public string connectString { get; set; }
         public Database()
         {
-            this.connectString = @"Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True";
+            this.connectString = @"Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True";
             // Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True - Z
             // Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True - N
         }
@@ -88,6 +88,30 @@ namespace TESTER
 
             return json;
 
+        }
+
+        public string Change_litrs(User user)
+        {
+            string json = "error";
+            string query = $"UPDATE Users SET liters = '{user.User_litrs}'";
+
+            SqlConnection connection = new SqlConnection(connectString);
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                Query registered = new Query("update");
+                json = JsonConvert.SerializeObject(registered);
+                
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+            }
+
+            return json;
         }
         public string TakeMessages(User user)
         {

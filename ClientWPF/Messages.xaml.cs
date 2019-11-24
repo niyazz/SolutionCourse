@@ -38,5 +38,10 @@ namespace ClientWPF
             account.Show();
             this.Close();
         }
+
+        private void Send_Click(object sender, RoutedEventArgs e)
+        {
+            //Query query = new Query("USERMESSAGES", user);
+        }
     }
 }

@@ -93,7 +93,7 @@ namespace TESTER
         public string Change_litrs(User user)
         {
             string json = "error";
-            string query = $"UPDATE Users SET liters = '{user.User_litrs}'";
+            string query = $"UPDATE Users SET liters = '{user.User_litrs}' WHERE login='{user.User_login}'";
 
             SqlConnection connection = new SqlConnection(connectString);
             try

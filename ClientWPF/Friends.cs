@@ -12,6 +12,7 @@ namespace ClientWPF
 
         public int FriendID { get; set; }
 
+
         public Friends()
         {
 

@@ -23,6 +23,7 @@ namespace ClientWPF
     /// </summary>
     public partial class Account : Window
     {
+        public Query q;
         public User user;
         public Cars car = new Cars();
         public Account(User user)
@@ -79,6 +80,13 @@ namespace ClientWPF
             this.car.User = user;
             cars car_form = new cars(car);
             car_form.Show();
+            this.Close();
+        }
+
+        private void friends_Click(object sender, RoutedEventArgs e)
+        {
+            friends friends = new friends(user, q);
+            friends.Show();
             this.Close();
         }
     }

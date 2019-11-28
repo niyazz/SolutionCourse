@@ -14,6 +14,10 @@ namespace ClientWPF
         public Cars car { get; set; }
         public Message Message { get; set; }
         public List<Message> Messages { get; set; }
+
+        public List<Friends> friends { get; set; }
+
+        public List<review> reviews { get; set; }
         public Query()
         { }
         public Query(string type)

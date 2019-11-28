@@ -65,6 +65,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddCar.xaml.cs">
+      <DependentUpon>AddCar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Cars.cs" />
+    <Compile Include="Cars.xaml.cs">
+      <DependentUpon>Cars.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Friends.cs" />
+    <Compile Include="Groups.cs" />
     <Compile Include="litrs.xaml.cs">
       <DependentUpon>litrs.xaml</DependentUpon>
     </Compile>
@@ -73,11 +82,20 @@
       <DependentUpon>Messages.xaml</DependentUpon>
     </Compile>
     <Compile Include="Query.cs" />
+    <Compile Include="review.cs" />
     <Compile Include="Sign_up.xaml.cs">
       <DependentUpon>Sign_up.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Page Include="Account.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddCar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Cars.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

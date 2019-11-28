@@ -11,6 +11,7 @@ namespace ClientWPF
     {
         public string Type { get; set; }
         public User User { get; set; }
+        public Cars car { get; set; }
         public Message Message { get; set; }
         public List<Message> Messages { get; set; }
         public Query()
@@ -18,6 +19,17 @@ namespace ClientWPF
         public Query(string type)
         {
             this.Type = type;
+        }
+        public Query(string type, User obj, Cars obj2)
+        {
+            this.Type = type;
+            this.User = obj;
+            this.car = obj2;
+        }
+        public Query(string type,  Cars obj2)
+        {
+            this.Type = type;
+            this.car = obj2;
         }
         public Query(string type, User obj)
         {

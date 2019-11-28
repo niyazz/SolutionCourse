@@ -24,11 +24,13 @@ namespace ClientWPF
     public partial class Account : Window
     {
         public User user;
+        public Cars car = new Cars();
         public Account(User user)
         {
             InitializeComponent();
             name_1.Content = user.User_name + " " + user.User_sername;
             this.user = user;
+            ;
 
         }
 
@@ -55,11 +57,6 @@ namespace ClientWPF
                 messages.Show();
                 this.Close();
             }
-
-
-
-
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -69,14 +66,19 @@ namespace ClientWPF
             main.Show();
             this.Close();
 
-        }
-
-        
-
+        }       
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             litrs litrs = new litrs(user);
             litrs.Show();
+            this.Close();
+        }
+
+        private void cars_Click(object sender, RoutedEventArgs e)
+        {
+            this.car.User = user;
+            cars car_form = new cars(car);
+            car_form.Show();
             this.Close();
         }
     }

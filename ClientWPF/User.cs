@@ -8,6 +8,7 @@ namespace ClientWPF
 {
     public class User
     {
+        public int User_id { get; set; }
         public string User_login { get; set; }
         public string User_password { get; set; }
         public string User_name { get; set; }

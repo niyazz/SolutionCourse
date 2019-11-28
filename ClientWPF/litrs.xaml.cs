@@ -53,8 +53,7 @@ namespace ClientWPF
 
                 StreamReader reader = new StreamReader(stream);
                 Query result = JsonConvert.DeserializeObject<Query>(reader.ReadLine());
-                // объект юзера, юзер может быть залогиненым (получены все его данные) или незалогиненым(получены ошибки) и 
-                // зарегистрированным (получено сообщение об успехе 'TYPE = REGISTERED') или незарегистрированным (получено сообщение об успехе 'TYPE = UNREGISTERED')
+                
                 switch (result.Type)
                 {
                     case "update":

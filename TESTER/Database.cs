@@ -74,7 +74,7 @@ namespace TESTER
             {
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
-                if(command.ExecuteNonQuery() == 1)
+                if (command.ExecuteNonQuery() == 1)
                 {
                     Query registered = new Query("REGISTERED");
                     json = JsonConvert.SerializeObject(registered);
@@ -103,7 +103,7 @@ namespace TESTER
                 SqlDataReader reader = command.ExecuteReader();
                 Query registered = new Query("update");
                 json = JsonConvert.SerializeObject(registered);
-                
+
                 connection.Close();
             }
             catch
@@ -120,7 +120,7 @@ namespace TESTER
             string query = $"SELECT sName, time, text FROM Messages WHERE aName = '{user.User_name}'";
             List<Message> messages = new List<Message>();
 
-         
+
             SqlConnection connection = new SqlConnection(connectString);
             try
             {
@@ -146,12 +146,12 @@ namespace TESTER
                     Query responce = new Query("USERMESSAGES", messages);
 
                     json = JsonConvert.SerializeObject(responce);
-           
-                }            
+
+                }
                 else
                     error = "Ошибка! У вас нет сообщений!";
-                    reader.Close();
-                    connection.Close();
+                reader.Close();
+                connection.Close();
             }
             catch
             {

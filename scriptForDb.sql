@@ -13,7 +13,7 @@ CREATE TABLE [dbo].[Users](
 	[login] [nvarchar](50) NOT NULL,
 	[name] [nvarchar](50) NOT NULL,
 	[sername] [nvarchar](50) NOT NULL,
-	[datebirth] [datetime] NOT NULL,
+	[datebirth] [nvarchar](50) NOT NULL,
 	[liters] [int] NOT NULL,
 	[mail] [nvarchar](max) NOT NULL,
 	[password] [nvarchar](15) NOT NULL,

@@ -36,16 +36,21 @@ namespace ClientWPF
         }
         void Activity1()
         {
+            string a;
+
+            a = data.Text[1] + "/" + data.Text[3] + data.Text[4] + "/" + data.Text[6] + data.Text[7] + data.Text[8] + data.Text[9];
+            string birthday = data.Text[0] + a;
+            //a = data.Text[8] + data.Text[7] + "/" + data.Text[5] + data.Text[4] + "/" + data.Text[2] + data.Text[1];
             try
             {
                 TcpClient clientSocket = new TcpClient();
                 clientSocket.Connect("localhost", 908);
                 NetworkStream stream = clientSocket.GetStream();
-                User user = new User(  
+                User user = new User(
                     login_sp.Text,
                     name.Text,
                     sername.Text,
-                    birthday.Text,
+                    birthday,
                     0,
                     email.Text,
                     password_sp.Text

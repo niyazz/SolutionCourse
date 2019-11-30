@@ -80,13 +80,13 @@
         <Button  x:Name="sign_up_button" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="71,545,0,0" VerticalAlignment="Top" Width="244" Height="34" Click="sign_up_button_Click" AutomationProperties.Name="Reg" />
         <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="53,312,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
         <Label Content=" Имя:" Foreground="White" HorizontalAlignment="Left" Margin="53,284,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="birthday" HorizontalAlignment="Left" Height="23" Margin="53,403,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+
         <Label Content="Дата рождения:" Foreground="White" HorizontalAlignment="Left" Margin="53,379,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="53,452,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
         <Label Content="e-mail:" Foreground="White" HorizontalAlignment="Left" Margin="53,431,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.731"/>
         <TextBox x:Name="sername" HorizontalAlignment="Left" Height="23" Margin="53,356,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
         <Label Content=" Фамилия:" Foreground="White" HorizontalAlignment="Left" Margin="52,335,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="data" HorizontalAlignment="Left" Margin="53,485,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="data" HorizontalAlignment="Left" Margin="53,405,0,0" VerticalAlignment="Top"/>
         <Border
                         Height="2"
                         Background="White"
@@ -95,10 +95,7 @@
                         Height="2"
                         Background="White"
                         Opacity="0.5" Margin="53,284,66,385"/>
-        <Border
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5" Margin="52,426,67,243"/>
+
         <Border
                         Height="2"
                         Background="White"

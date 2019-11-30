@@ -12,7 +12,7 @@ namespace TESTER
         public string connectString { get; set; }
         public Database()
         {
-            this.connectString = @"Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True";
+            this.connectString = @"Data Source=DESKTOP-OD08VVB\SQLEXPRESS;Initial Catalog=CourseWork;Integrated Security=True";
             // Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True - Z
             // Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True - N
         }
@@ -64,7 +64,7 @@ namespace TESTER
                 $"'{user.User_login}'," +
                 $"'{user.User_name}'," +
                 $"'{user.User_sername}'," +
-                $"{user.User_birthday}," +
+                $"'{user.User_birthday}'," +
                 $"{Convert.ToInt32(user.User_litrs)}," +
                 $"'{user.User_mail}'," +
                 $"'{user.User_password}')";

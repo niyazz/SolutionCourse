@@ -8,6 +8,7 @@
         Title="cars" Width="370" Height="671"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         >
     <Grid>
 
@@ -36,9 +37,9 @@
         <Rectangle Fill="Gray" RadiusX="11" RadiusY="11" Margin="129,49,232,614"/>
         <Rectangle Margin="33,100,30,77" >
             <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#8EC5FC" Offset="0.1"/>
-                    <GradientStop Color="#792AF5" Offset="1"/>
+                <LinearGradientBrush StartPoint="0.966,0.013" EndPoint="0.032,0.965">
+                    <GradientStop Color="#FFCD7C44" Offset="0.164"/>
+                    <GradientStop Color="#FF7B38E6" Offset="0.76"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
@@ -72,7 +73,70 @@
             </Button.Template>
         </Button>
         <TextBox x:Name="List_of_cars" Background="#600A4030" HorizontalAlignment="Left" Height="193" Margin="62,201,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="254"/>
-        <Button  x:Name="AddCar" Content="Добавить автомобиль" HorizontalAlignment="Left" Margin="96,472,0,0" VerticalAlignment="Top" Width="178" Click="AddCar_Click"/>
+        <!--<Button  x:Name="AddCar" Content="Добавить автомобиль" HorizontalAlignment="Left" Margin="96,472,0,0" VerticalAlignment="Top" Width="178" Click="AddCar_Click"/>-->
+        <!--<Кнопка добавить автомобиль>-->
+        <StackPanel   HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Margin="0,405,80,223" Width="140" >
+            <StackPanel.Resources>
+                <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
+                    <Border BorderBrush="#333" BorderThickness="1" CornerRadius="11" 
+                                TextBlock.Foreground="#ddd" Margin="0 0 10 0" MaxHeight="30"
+                                MinWidth="80" Padding="5" Name="myBorder">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF272727" Offset="0"></GradientStop>
+                                <GradientStop Color="#474747" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                              VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#777777" Offset="0"></GradientStop>
+                                        <GradientStop Color="#575757" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#939292" Offset="0"></GradientStop>
+                                        <GradientStop Color="#575757" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#444" Offset="0"></GradientStop>
+                                        <GradientStop Color="#222" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Opacity" Value="0.4"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </StackPanel.Resources>
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.315"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.523"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Добавить автомобиль" Click="AddCar_Click" Margin="-80,0,-25,0" Height="41" />
 
+        </StackPanel>
     </Grid>
 </Window>

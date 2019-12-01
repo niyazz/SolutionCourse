@@ -68,7 +68,7 @@ namespace ClientWPF
             this.Close();
 
         }
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_litr(object sender, RoutedEventArgs e)
         {
             litrs litrs = new litrs(user);
             litrs.Show();
@@ -83,6 +83,9 @@ namespace ClientWPF
             this.Close();
         }
 
+        private void Button_Nastroiki(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

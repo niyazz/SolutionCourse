@@ -12,9 +12,10 @@ namespace TESTER
         public string connectString { get; set; }
         public Database()
         {
-            this.connectString = @"Data Source=DESKTOP-OD08VVB\SQLEXPRESS;Initial Catalog=CourseWork;Integrated Security=True";
+            this.connectString = @"Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True";
             // Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True - Z
             // Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True - N
+            //Data Source=DESKTOP-OD08VVB\SQLEXPRESS;Initial Catalog=CourseWork;Integrated Security=True - T
         }
 
         public string GetUser(User user)

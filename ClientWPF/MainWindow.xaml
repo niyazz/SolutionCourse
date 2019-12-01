@@ -10,6 +10,7 @@
         Title="MainWindow" Width="370" Height="671"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
         >
     <!-- <Grid Margin="0,0,110,72">
         <Grid.ColumnDefinitions>
@@ -53,9 +54,9 @@
         <Rectangle Fill="Gray" RadiusX="11" RadiusY="11" Margin="129,49,232,614"/>
         <Rectangle Margin="33,100,30,77" >
             <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="#8EC5FC" Offset="0.1"/>
-                    <GradientStop Color="#792AF5" Offset="1"/>
+                <LinearGradientBrush StartPoint="0.966,0.013" EndPoint="0.032,0.965">
+                    <GradientStop Color="#FFCD7C44" Offset="0.164"/>
+                    <GradientStop Color="#FF7B38E6" Offset="0.76"/>
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
@@ -98,9 +99,9 @@
                         Opacity="0.5"/>
 
 
-                
-                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                        <PasswordBox x:Name="Password" 
+
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <PasswordBox x:Name="Password" 
                                  FontFamily="Helvetica"
                              FontWeight="Light"
                              Password="12345"
@@ -115,24 +116,24 @@
                              Height="25"
                              Margin="63,0,0,0" VerticalAlignment="Top"/>
 
-                    </StackPanel>
+                </StackPanel>
                 <Border Width="250"
                         Height="2"
                         Background="White"
                         Opacity="0.5"/>
-                   
 
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Height="200" Margin="0,0,40,0" Width="285" >
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Height="200" Margin="0,0,40,0" Width="285" >
                     <StackPanel.Resources>
                         <!-- Шаблон для кнопок -->
                         <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
-                            <Border BorderBrush="#333" BorderThickness="1" 
+                            <Border BorderBrush="#333" BorderThickness="1" CornerRadius="11" 
                                 TextBlock.Foreground="#ddd" Margin="0 0 10 0" MaxHeight="30"
                                 MinWidth="80" Padding="5" Name="myBorder">
                                 <Border.Background>
                                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                        <GradientStop Color="#676767" Offset="0"></GradientStop>
+                                        <GradientStop Color="#FF272727" Offset="0"></GradientStop>
                                         <GradientStop Color="#474747" Offset="1"></GradientStop>
                                     </LinearGradientBrush>
                                 </Border.Background>
@@ -176,8 +177,7 @@
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </StackPanel.Resources>
-                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Width="140
-                            " Content="LOGIN" Click="sendToServ_Click"/>
+                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Width="140" Content="LOGIN" Click="sendToServ_Click"/>
                     <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" Content="REGISTER" Click="Button_Click" Width="145"/>
                 </StackPanel>
                 <!--<Button Width="100" Height="40" Content="LOGIN" Margin="60,0,60,0" Click="sendToServ_Click"/>-->

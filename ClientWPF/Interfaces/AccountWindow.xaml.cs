@@ -31,39 +31,9 @@ namespace ClientWPF
 
         private void ToMessagesPage_Click(object sender, RoutedEventArgs e)
         {
-            //
-            //  подключение к серверу:
-            //
-            TcpClient clientSocket = new TcpClient();
-            clientSocket.Connect("localhost", 908);
-            NetworkStream stream = clientSocket.GetStream();
-            //
-            //  отправка данных клиентом:
-            //
-            StreamWriter writer = new StreamWriter(stream);
-            Query query = new Query("TAKEMESSAGES", user);
-            string json = JsonConvert.SerializeObject(query);
-            writer.WriteLine(json);
-            writer.Flush();
-            //
-            //  получение ответа от сервера:
-            //
-            StreamReader reader = new StreamReader(stream);
-            string responce = reader.ReadLine().ToString();
-
-            if (responce.Contains("Ошибка!") == false)
-            {
-                Query queryResult = JsonConvert.DeserializeObject<Query>(responce);
-                MessagesPage mesPage = new MessagesPage(user, queryResult.Messages);
-                mesPage.Show();
-                this.Close();
-            }
-            //
-            //  завершение общения с сервером:
-            //
-            reader.Close();
-            writer.Close();
-            stream.Close();
+            MessagesPage messPage = new MessagesPage(user);
+            messPage.Show();
+            this.Close();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -83,40 +53,9 @@ namespace ClientWPF
 
         private void ToCarsPage_Click(object sender, RoutedEventArgs e)
         {
-            //
-            //  подключение к серверу:
-            //
-            TcpClient clientSocket = new TcpClient();
-            clientSocket.Connect("localhost", 908);
-            NetworkStream stream = clientSocket.GetStream();
-            //
-            //  отправка данных клиентом:
-            //
-            StreamWriter writer = new StreamWriter(stream);
-            Query query = new Query("TAKECARS", user);
-            string json = JsonConvert.SerializeObject(query);
-            writer.WriteLine(json);
-            writer.Flush();
-            //
-            //  получение ответа от сервера:
-            //
-            StreamReader reader = new StreamReader(stream);
-            string responce = reader.ReadLine().ToString();
-
-            if (responce.Contains("Ошибка!") == false)
-            {
-                Query queryResult = JsonConvert.DeserializeObject<Query>(responce);
-                CarsPage carsPage = new CarsPage(user, queryResult.Cars);
-                carsPage.Show();
-                this.Close();
-            }
-            //
-            //  завершение общения с сервером:
-            //
-            reader.Close();
-            writer.Close();
-            stream.Close();
-
+            CarsPage carsPage = new CarsPage(user);
+            carsPage.Show();
+            this.Close();
         }
 
         private void ToSettingsPage_Click(object sender, RoutedEventArgs e)

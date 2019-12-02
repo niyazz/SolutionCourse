@@ -21,16 +21,52 @@ namespace ClientWPF
     {
         public User user;
         public List<Message> Messages;
-        public MessagesPage(User user, List<Message> messages)
+        public MessagesPage(User user)
         {
-            InitializeComponent();
             this.user = user;
-            this.Messages = messages;
-            messTextBox.Text = "";
-            for (int i = 0; i < Messages.Count; i++)
+
+            //
+            //  подключение к серверу:
+            //
+            TcpClient clientSocket = new TcpClient();
+            clientSocket.Connect("localhost", 908);
+            NetworkStream stream = clientSocket.GetStream();
+            //
+            //  отправка данных клиентом:
+            //
+            StreamWriter writer = new StreamWriter(stream);
+            Query query = new Query("TAKEMESSAGES", user);
+            string json = JsonConvert.SerializeObject(query);
+            writer.WriteLine(json);
+            writer.Flush();
+            //
+            //  получение ответа от сервера:
+            //
+            StreamReader reader = new StreamReader(stream);
+            string responce = reader.ReadLine().ToString();
+
+            InitializeComponent();
+
+            if (responce.Contains("Ошибка!") == false)
             {
-                messTextBox.Text += $"ОТ {Messages[i].senderName} - { Messages[i].Text} \n";
+            Query queryResult = JsonConvert.DeserializeObject<Query>(responce);
+            this.Messages = queryResult.Messages;
+            messTextBox.Text = "";
+                for (int i = 0; i < Messages.Count; i++)
+                {
+                    messTextBox.Text += $"ОТ {Messages[i].senderName} - { Messages[i].Text} \n";
+                }
             }
+            else
+            {
+             messTextBox.Text = "Сообщений нет";
+            }
+            //
+            //  завершение общения с сервером:
+            //
+            reader.Close();
+            writer.Close();
+            stream.Close();    
         }
 
         private void BackClick_ToAccountPage(object sender, RoutedEventArgs e)

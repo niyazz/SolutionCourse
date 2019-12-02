@@ -17,35 +17,35 @@ using System.Windows.Shapes;
 using Newtonsoft.Json;
 namespace ClientWPF
 {
-    /// <summary>
-    /// Логика взаимодействия для Sign_up.xaml
-    /// </summary>
-    public partial class Sign_up : Window
+    public partial class Register_Page : Window
     {
-        public bool направление = false;
-        public Sign_up()
+        public Register_Page()
         {
             InitializeComponent();
-
         }
-        public void Open_MainWindow()
+        public void BackClick_ToLoginPage(object sender, RoutedEventArgs e)
         {
-            MainWindow window = new MainWindow();
-            window.Show();
+            Login_Page logPage = new Login_Page();
+            logPage.Show();
             this.Close();
         }
-        void Activity1()
+        protected void Register()
         {
             string a;
 
             a = data.Text[1] + "/" + data.Text[3] + data.Text[4] + "/" + data.Text[6] + data.Text[7] + data.Text[8] + data.Text[9];
             string birthday = data.Text[0] + a;
-            //a = data.Text[8] + data.Text[7] + "/" + data.Text[5] + data.Text[4] + "/" + data.Text[2] + data.Text[1];
             try
             {
+                //
+                //  подключение к серверу:
+                //
                 TcpClient clientSocket = new TcpClient();
                 clientSocket.Connect("localhost", 908);
                 NetworkStream stream = clientSocket.GetStream();
+                //
+                //  отправка данных клиентом:
+                //
                 User user = new User(
                     login_sp.Text,
                     name.Text,
@@ -55,42 +55,45 @@ namespace ClientWPF
                     email.Text,
                     password_sp.Text
                     );
-
                 Query query = new Query("REGISTRATION", user);
                 string json = JsonConvert.SerializeObject(query);
-
                 StreamWriter writer = new StreamWriter(stream);
                 writer.WriteLine(json);
                 writer.Flush();
-
+                //
+                //  получение ответа от сервера:
+                //
                 StreamReader reader = new StreamReader(stream);
-                Query result = JsonConvert.DeserializeObject<Query>(reader.ReadLine());
-                // объект юзера, юзер может быть залогиненым (получены все его данные) или незалогиненым(получены ошибки) и 
-                // зарегистрированным (получено сообщение об успехе 'TYPE = REGISTERED') или незарегистрированным (получено сообщение об успехе 'TYPE = UNREGISTERED')
-
-                switch (result.Type)
+                Query responce = JsonConvert.DeserializeObject<Query>(reader.ReadLine());
+                switch (responce.Type)
                 {
                     case "REGISTERED":
-                        MessageBox.Show(result.Type);
+                        MessageBox.Show("Вы успешно зарегистрировались!");
                         break;
                     case "UNREGISTERED":
                         throw new Exception();
-                        break;
                 }
-
+                //
+                //  завершение общения с сервером:
+                //
                 reader.Close();
                 writer.Close();
                 stream.Close();
-                Open_MainWindow();
+
+                Login_Page logPage = new Login_Page();
+                logPage.Show();
+                this.Close();
             }
             catch
             {
-                MessageBox.Show("Введите корректные данные!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Регистрация не удалась!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private void sign_up_button_Click(object sender, RoutedEventArgs e)
+        private void Register_Click(object sender, RoutedEventArgs e)
         {
+            bool dataValid = false;
             DateTime d1 = new DateTime(2012, 12, 31);
+
             if (!string.IsNullOrEmpty(login_sp.Text))//Проверка заполнения поля с логином
             {
                 if (login_sp.Text.Length <= 10) //Проверка заполнения поля с логином
@@ -115,8 +118,7 @@ namespace ClientWPF
                                                     {
                                                         if (password_sp.Text.Length <= 10)
                                                         {
-                                                            //sign_up_button.IsEnabled = true;
-                                                            направление = true;
+                                                            dataValid = true;
                                                         }
                                                         else //Если нет, он увидит сообщение, что что-то пошло не так
                                                         {
@@ -170,22 +172,16 @@ namespace ClientWPF
                 }
                 else //Если нет, он увидит сообщение, что что-то пошло не так
                 {
-                    MessageBox.Show("Слишком длинный у вас логин,пожалуйста,сократите!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Слишком длинный у вас логин, пожалуйста, сократите!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             else //Если нет, он увидит сообщение, что что-то пошло не так
             {
                 MessageBox.Show("Введите ваш логин!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            if (направление == true)
-                Activity1();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow main = new MainWindow();
-            main.Show();
-            this.Close();
+            if (dataValid)
+                Register();
         }
     }
 }

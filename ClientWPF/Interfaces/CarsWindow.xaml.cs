@@ -14,31 +14,31 @@ using System.Windows.Shapes;
 
 namespace ClientWPF
 {
-    /// <summary>
-    /// Логика взаимодействия для cars.xaml
-    /// </summary>
-    public partial class cars : Window
+    public partial class CarsPage : Window
     {
-        public Cars car;
-        public cars(Cars car)
+        public User user;
+        public List<Car> cars;
+        public CarsPage(User user, List<Car> cars)
         {
             InitializeComponent();
-            this.car = car;
-            //List_of_cars.Text = car.Car_name + ' ' + car.Car_numbers+'\n';
+            this.user = user;
+            this.cars = cars;
 
-
+            for (int i = 0; i < cars.Count; i++)
+            {
+                listView.Items.Add(cars[i].Car_numbers + ' ' + cars[i].Car_mark);
+            }
         }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void BackClick_ToAccountPage(object sender, RoutedEventArgs e)
         {
-            Account account = new Account(car.User);
-            account.Show();
+            AccountPage accPage = new AccountPage(user);
+            accPage.Show();
             this.Close();
 
         }
-
         private void AddCar_Click(object sender, RoutedEventArgs e)
         {
-            AddCar addingcar = new AddCar(car.User);
+            AddCarPage addingcar = new AddCarPage(user, cars);
             addingcar.Show();
             this.Close();
         }

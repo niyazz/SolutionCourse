@@ -1,16 +1,16 @@
-﻿<Window x:Class="ClientWPF.Messages"
+﻿<Window x:Class="ClientWPF.Register_Page"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientWPF"
         mc:Ignorable="d"
-        Title="Messages" Width="370" Height="671"
+        Title="Sign_up"  Width="370" Height="671"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         >
-    <Grid>
+    <Grid RenderTransformOrigin="0.5,0.44">
 
         <Border Background="Gray" CornerRadius="30" Grid.RowSpan="2"/>
         <Rectangle Fill="White"  RadiusX="30" RadiusY="30" RenderTransformOrigin="0.618,0.274" HorizontalAlignment="Center" Width="358" Height="662" VerticalAlignment="Center"/>
@@ -35,7 +35,7 @@
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Fill="Gray" RadiusX="11" RadiusY="11" Margin="129,49,232,614"/>
-        <Rectangle Margin="33,100,30,77" >
+        <Rectangle Margin="33,100,30,77" RenderTransformOrigin="0.414,0.506" >
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0.966,0.013" EndPoint="0.032,0.965">
                     <GradientStop Color="#FFCD7C44" Offset="0.164"/>
@@ -48,11 +48,19 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel VerticalAlignment="Center"/>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="Регистрация:"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="22"
+                           Foreground="White"
+                           HorizontalAlignment="Center" Margin="123,0" RenderTransformOrigin="0.496,-0.385"/>
+
+            </StackPanel>
 
 
         </Grid>
-        <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top" Click="Button_Click">
+        <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top" Click="BackClick_ToLoginPage">
             <Button.Template>
                 <ControlTemplate  TargetType="Button">
                     <Grid>
@@ -64,10 +72,45 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <TextBox x:Name="mes_from" HorizontalAlignment="Left" Height="27" Margin="45,520,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="275" Background="Transparent" BorderThickness="0"/>
-        <!--<Button x:Name="Send" Content="Send" HorizontalAlignment="Left" Margin="292,552,0,0" VerticalAlignment="Top" Width="42" Height="34" Click="Send_Click"/>-->
-        <!--<Кнопка отправить сообщение>-->
-        <StackPanel   HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Margin="0,552,90,76" Width="140" >
+        <Label  Content="Логин:" Foreground="White" HorizontalAlignment="Left" Margin="53,188,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="login_sp" HorizontalAlignment="Left" Height="23" Margin="53,214,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+
+        <Label Content="Пароль:" Foreground="White" HorizontalAlignment="Left" Margin="52,237,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="password_sp" HorizontalAlignment="Left" Height="23" Margin="53,263,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+
+        <!--<Button  x:Name="sign_up_button" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="71,545,0,0" VerticalAlignment="Top" Width="244" Height="34" Click="sign_up_button_Click" AutomationProperties.Name="Reg" />-->
+        <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="53,312,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content=" Имя:" Foreground="White" HorizontalAlignment="Left" Margin="53,284,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Дата рождения:" Foreground="White" HorizontalAlignment="Left" Margin="53,379,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="53,452,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content="e-mail:" Foreground="White" HorizontalAlignment="Left" Margin="53,431,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.731"/>
+        <TextBox x:Name="sername" HorizontalAlignment="Left" Height="23" Margin="53,356,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content=" Фамилия:" Foreground="White" HorizontalAlignment="Left" Margin="52,335,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="data" HorizontalAlignment="Left" Margin="53,405,0,0" VerticalAlignment="Top"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,235,66,434"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,284,66,385"/>
+
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,478,66,191"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="52,379,67,290"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="52,335,67,334"/>
+        <!--<Кнопка зарегистрироваться>-->
+        <StackPanel   HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Margin="0,535,95,93" Width="140" >
             <StackPanel.Resources>
                 <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
                     <Border BorderBrush="#333" BorderThickness="1" CornerRadius="11" 
@@ -127,16 +170,9 @@
                     <TranslateTransform Y="-0.523"/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Отправить сообщение" Click="Send_Click" Margin="-80,0,-45,0" Height="41" />
+            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Зарегистрироваться" Click="Register_Click" Margin="-80,0,-54,0" Height="41" />
 
         </StackPanel>
-        <TextBox x:Name="mes_t_sb" HorizontalAlignment="Left" Height="336" Margin="33,149,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="307" FontSize="16" 
-            BorderBrush="White" Background="#600A4030"
-            Padding="10"/>
-        <Label Content="Введите сообщение:" HorizontalAlignment="Left" FontWeight="Light" FontFamily="helvetica" Foreground="White" Margin="33,485,0,0" VerticalAlignment="Top" Width="162" Height="30"/>
-        <Border
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5" Margin="45,545,50,124"/>
+
     </Grid>
 </Window>

@@ -8,12 +8,11 @@ using Newtonsoft.Json;
 namespace TESTER
 {
     class Program
-    { 
+    {
         static void Main(string[] args)
-        {          
+        {
             TcpListener serverSocket = new TcpListener(IPAddress.Any, 908); //создаем сокет
-            serverSocket.Start();        
-            byte[] data = new byte[256];
+            serverSocket.Start();
             Console.WriteLine("Waiting for a connection... ");
 
             while (true)
@@ -22,13 +21,11 @@ namespace TESTER
                 NetworkStream stream = client.GetStream();
                 StreamReader reader = new StreamReader(stream);
                 Database db = new Database();
-                
-                string json = reader.ReadLine();
-                Console.WriteLine(json);
-               // Console.ReadLine();
-                Query query = JsonConvert.DeserializeObject<Query>(json);
-                string operationResult = "";
 
+                string json = reader.ReadLine(); // полученные с клиента данные
+                Query query = JsonConvert.DeserializeObject<Query>(json);
+
+                string operationResult = "";
                 switch (query.Type)
                 {
                     case "REGISTRATION":
@@ -40,52 +37,32 @@ namespace TESTER
                     case "TAKEMESSAGES":
                         operationResult = db.TakeMessages(query.User);
                         break;
-                    case "UPDATE":
-                        operationResult = db.Change_litrs(query.User);
+                    case "SENDMES":
+                        Console.WriteLine("***SENDING**********");
+                        operationResult = db.SendMessage(query.Message);
+                        break;
+                    case "UPDATELITRS":
+                        operationResult = db.ChangeLitrsAmount(query.User);
+                        break;
+                    case "TAKECARS":
+                        operationResult = db.TakeCars(query.User);
+                        break;
+                    case "ADDCAR":
+                        operationResult = db.AddCar(query.Car);
                         break;
 
                 }
 
                 StreamWriter writer = new StreamWriter(stream);
-                writer.WriteLine(operationResult);
+                writer.WriteLine(operationResult); // запись ответа от сервера
                 Console.WriteLine("Отправлено: " + operationResult);
-                
+
                 writer.Close();
                 reader.Close();
                 stream.Close();
                 client.Close();
-              
+
             }
-            
-
-
-
-
-
-
-
-
-
-            /* Альтернативная (как я понял устаревшая)  реализация */
-
-            //static Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            //socket.Bind(new IPEndPoint(IPAddress.Any, 908));
-            //socket.Listen(5);
-            //Socket client = socket.Accept();
-
-            //Console.WriteLine("Connected new client");
-
-            //byte[] buffer = new byte[1024];
-            //client.Receive(buffer);
-
-            //Console.WriteLine(Encoding.ASCII.GetString(buffer));
-
-            /*while (true) //цикловая отправка
-             {
-              string message = reader.ReadLine();
-              Console.WriteLine("Получено: " + message);
-             }*/
-
         }
     }
 }

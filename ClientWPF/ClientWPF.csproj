@@ -65,64 +65,64 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddCar.xaml.cs">
-      <DependentUpon>AddCar.xaml</DependentUpon>
+    <Compile Include="Interfaces\AddCarWindow.xaml.cs">
+      <DependentUpon>AddCarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cars.cs" />
-    <Compile Include="Cars.xaml.cs">
-      <DependentUpon>Cars.xaml</DependentUpon>
+    <Compile Include="Models\Car.cs" />
+    <Compile Include="Interfaces\CarsWindow.xaml.cs">
+      <DependentUpon>CarsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Friends.cs" />
-    <Compile Include="Groups.cs" />
-    <Compile Include="litrs.xaml.cs">
-      <DependentUpon>litrs.xaml</DependentUpon>
+    <Compile Include="Models\Friends.cs" />
+    <Compile Include="Models\Groups.cs" />
+    <Compile Include="Interfaces\LitrsWindow.xaml.cs">
+      <DependentUpon>LitrsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Message.cs" />
-    <Compile Include="Messages.xaml.cs">
-      <DependentUpon>Messages.xaml</DependentUpon>
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Interfaces\MessagesWindow.xaml.cs">
+      <DependentUpon>MessagesWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Query.cs" />
-    <Compile Include="review.cs" />
-    <Compile Include="Sign_up.xaml.cs">
-      <DependentUpon>Sign_up.xaml</DependentUpon>
+    <Compile Include="Models\Query.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Interfaces\RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
-    <Page Include="Account.xaml">
+    <Compile Include="Models\User.cs" />
+    <Page Include="Interfaces\AccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddCar.xaml">
+    <Page Include="Interfaces\AddCarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Cars.xaml">
+    <Page Include="Interfaces\CarsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="litrs.xaml">
+    <Page Include="Interfaces\LitrsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Interfaces\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Account.xaml.cs">
-      <DependentUpon>Account.xaml</DependentUpon>
+    <Compile Include="Interfaces\AccountWindow.xaml.cs">
+      <DependentUpon>AccountWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Interfaces\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Messages.xaml">
+    <Page Include="Interfaces\MessagesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sign_up.xaml">
+    <Page Include="Interfaces\RegisterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

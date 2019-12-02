@@ -8,7 +8,7 @@ namespace TESTER
     {
         public int senderID { get; set; }
         public int adressID { get; set; }
-        public string senderName { get; set; } // плохая практика, но так уменьшим количесвто запросов
+        public string senderName { get; set; }
         public string adressName { get; set; }
         public DateTime Time { get; set; }
         public string Text { get; set; }

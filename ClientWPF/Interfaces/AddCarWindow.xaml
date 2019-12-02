@@ -1,16 +1,16 @@
-﻿<Window x:Class="ClientWPF.Sign_up"
+﻿<Window x:Class="ClientWPF.AddCarPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientWPF"
         mc:Ignorable="d"
-        Title="Sign_up"  Width="370" Height="671"
+        Title="AddCar" Width="370" Height="671"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         >
-    <Grid RenderTransformOrigin="0.5,0.44">
+    <Grid>
 
         <Border Background="Gray" CornerRadius="30" Grid.RowSpan="2"/>
         <Rectangle Fill="White"  RadiusX="30" RadiusY="30" RenderTransformOrigin="0.618,0.274" HorizontalAlignment="Center" Width="358" Height="662" VerticalAlignment="Center"/>
@@ -35,7 +35,7 @@
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Fill="Gray" RadiusX="11" RadiusY="11" Margin="129,49,232,614"/>
-        <Rectangle Margin="33,100,30,77" RenderTransformOrigin="0.414,0.506" >
+        <Rectangle Margin="33,100,30,77" >
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0.966,0.013" EndPoint="0.032,0.965">
                     <GradientStop Color="#FFCD7C44" Offset="0.164"/>
@@ -49,18 +49,18 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Регистрация:"
+                <TextBlock Text="Добавить автомобиль"
                            FontWeight="Light"
                            FontFamily="helvetica"
                            FontSize="22"
                            Foreground="White"
-                           HorizontalAlignment="Center" Margin="123,0" RenderTransformOrigin="0.496,-0.385"/>
+                           HorizontalAlignment="Center" Margin="66,0,80,0" Width="224"/>
 
             </StackPanel>
 
 
         </Grid>
-        <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top" Click="Button_Click">
+        <Button x:Name="Back" Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top" Click="BackClick_ToCarsPage">
             <Button.Template>
                 <ControlTemplate  TargetType="Button">
                     <Grid>
@@ -72,44 +72,20 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Label  Content="Логин:" Foreground="White" HorizontalAlignment="Left" Margin="53,188,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="login_sp" HorizontalAlignment="Left" Height="23" Margin="53,214,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
 
-        <Label Content="Пароль:" Foreground="White" HorizontalAlignment="Left" Margin="52,237,0,0" VerticalAlignment="Top" />
-        <TextBox x:Name="password_sp" HorizontalAlignment="Left" Height="23" Margin="53,263,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content="Марка:" Foreground="White" HorizontalAlignment="Left" Margin="53,188,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="mark" HorizontalAlignment="Left" Height="23" Margin="53,214,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
 
-        <!--<Button  x:Name="sign_up_button" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="71,545,0,0" VerticalAlignment="Top" Width="244" Height="34" Click="sign_up_button_Click" AutomationProperties.Name="Reg" />-->
-        <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="53,312,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
-        <Label Content=" Имя:" Foreground="White" HorizontalAlignment="Left" Margin="53,284,0,0" VerticalAlignment="Top"/>
-
-        <Label Content="Дата рождения:" Foreground="White" HorizontalAlignment="Left" Margin="53,379,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="email" HorizontalAlignment="Left" Height="23" Margin="53,452,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
-        <Label Content="e-mail:" Foreground="White" HorizontalAlignment="Left" Margin="53,431,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.731"/>
-        <TextBox x:Name="sername" HorizontalAlignment="Left" Height="23" Margin="53,356,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
-        <Label Content=" Фамилия:" Foreground="White" HorizontalAlignment="Left" Margin="52,335,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="data" HorizontalAlignment="Left" Margin="53,405,0,0" VerticalAlignment="Top"/>
-        <Border
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5" Margin="53,235,66,434"/>
-        <Border
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5" Margin="53,284,66,385"/>
-
-        <Border
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5" Margin="53,478,66,191"/>
-        <Border
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5" Margin="52,379,67,290"/>
-        <Border
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5" Margin="52,335,67,334"/>
-        <!--<Кнопка зарегистрироваться>-->
+        <!--<Button  x:Name="signcar" Content="Добавить авто" HorizontalAlignment="Left" Margin="60,550,0,0" VerticalAlignment="Top" Width="244" Height="34" AutomationProperties.Name="Reg" Click="signcar_Click" />-->
+        <TextBox x:Name="numbers" HorizontalAlignment="Left" Height="23" Margin="53,263,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content=" Номера:" Foreground="White" HorizontalAlignment="Left" Margin="53,237,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="old" HorizontalAlignment="Left" Height="23" Margin="53,371,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content="Год выпуска:" Foreground="White" HorizontalAlignment="Left" Margin="53,345,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="description" HorizontalAlignment="Left" Height="23" Margin="53,425,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content="Описание" Foreground="White" HorizontalAlignment="Left" Margin="53,399,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.731"/>
+        <TextBox x:Name="brand" HorizontalAlignment="Left" Height="23" Margin="53,317,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content=" Бренд:" Foreground="White" HorizontalAlignment="Left" Margin="53,291,0,0" VerticalAlignment="Top"/>
+        <!--<Кнопка добавить автомобиль>-->
         <StackPanel   HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Margin="0,535,95,93" Width="140" >
             <StackPanel.Resources>
                 <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
@@ -170,9 +146,34 @@
                     <TranslateTransform Y="-0.523"/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Зарегистрироваться" Click="sign_up_button_Click" Margin="-80,0,-54,0" Height="41" />
+            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Добавить авто" Click="RegisterCar_Click" Margin="-80,0,-45,0" Height="41" />
 
         </StackPanel>
-
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,495,66,174"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,235,66,434"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="52,394,67,275"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,446,66,223"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="52,340,67,329"/>
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="53,284,66,385"/>
+        <TextBox x:Name="region" HorizontalAlignment="Left" Height="23" Margin="53,474,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="251" Background="Transparent" BorderThickness="0"/>
+        <Label Content="Регион" Foreground="White" HorizontalAlignment="Left" Margin="53,448,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.391,0.731"/>
     </Grid>
 </Window>

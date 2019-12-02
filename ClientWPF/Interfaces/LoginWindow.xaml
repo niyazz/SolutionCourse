@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientWPF"
-        xmlns:Properties="clr-namespace:ClientWPF.Properties" x:Class="ClientWPF.MainWindow"
+        xmlns:Properties="clr-namespace:ClientWPF.Properties" x:Class="ClientWPF.Login_Page"
         mc:Ignorable="d"
         
-        Title="MainWindow" Width="370" Height="671"
+        Title="LoginWindow" Width="370" Height="671"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
@@ -177,15 +177,15 @@
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </StackPanel.Resources>
-                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Width="140" Content="LOGIN" Click="sendToServ_Click"/>
-                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" Content="REGISTER" Click="Button_Click" Width="145"/>
+                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Width="140" Content="LOGIN" Click=" Login_Click"/>
+                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" Content="REGISTER" Click="ToRegisterPage_Click" Width="145"/>
                 </StackPanel>
                 <!--<Button Width="100" Height="40" Content="LOGIN" Margin="60,0,60,0" Click="sendToServ_Click"/>-->
                 <!--<Button Width="100" Height="40" Content="REGISTER" Click="Button_Click"/>-->
 
 
             </StackPanel>
-            <TextBox x:Name="Taken"
+            <TextBox x:Name="Error"
                              FontFamily="Helvetica"
                              FontWeight="Bold"
                              Text="Errors"

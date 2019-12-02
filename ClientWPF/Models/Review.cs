@@ -6,21 +6,19 @@ using System.Threading.Tasks;
 
 namespace ClientWPF
 {
-    public class review
+    public class Review
     {
         public int UserID;
 
-        public string Review;
+        public string Text;
 
-        public review()
-        {
+        public Review()
+        { }
 
-        }
-
-        public review(int userId, string review)
+        public Review(int userId, string text)
         {
             this.UserID = userId;
-            this.Review = review;
+            this.Text = text;
         }
     }
 }

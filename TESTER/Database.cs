@@ -12,16 +12,14 @@ namespace TESTER
         public string connectString { get; set; }
         public Database()
         {
-            this.connectString = @"Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True";
+            this.connectString = @"Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True";
             // Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True - Z
             // Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True - N
-            //Data Source=DESKTOP-OD08VVB\SQLEXPRESS;Initial Catalog=CourseWork;Integrated Security=True - T
         }
 
-        public string GetUser(User user)
+        public string GetUser(User user) // функция входа в аккаунт - успех "LOGINED"
         {
-            string json = null;
-            string error = null;
+            string json = null, error = null;
             string query = $"SELECT * FROM Users WHERE login = '{user.User_login}' AND password = '{user.User_password}'";
             SqlConnection connection = new SqlConnection(connectString);
             try
@@ -33,6 +31,7 @@ namespace TESTER
                 if (reader.Read())
                 {
                     User logined = new User(
+                       Convert.ToInt32(reader[0].ToString()),
                         reader[1].ToString(),
                         reader[2].ToString(),
                         reader[3].ToString(),
@@ -42,11 +41,12 @@ namespace TESTER
                         reader[7].ToString()
                         );
 
-                    Query responce = new Query("LOGINED", logined);
-                    json = JsonConvert.SerializeObject(responce);
+                    Query result = new Query("LOGINED", logined);
+                    json = JsonConvert.SerializeObject(result);
                 }
                 else
                     error = "Ошибка! Такого пользователя не существует";
+
                 reader.Close();
                 connection.Close();
             }
@@ -57,8 +57,7 @@ namespace TESTER
             }
             return json != null ? json : error;
         }
-
-        public string RegisterUser(User user)
+        public string RegisterUser(User user) // функция регистрации пользователя - успех "REGISTERED"
         {
             string json = "UNREGISTERED";
             string query = $"INSERT INTO Users VALUES (" +
@@ -77,8 +76,8 @@ namespace TESTER
                 SqlCommand command = new SqlCommand(query, connection);
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    Query registered = new Query("REGISTERED");
-                    json = JsonConvert.SerializeObject(registered);
+                    Query result = new Query("REGISTERED");
+                    json = JsonConvert.SerializeObject(result);
                 }
                 connection.Close();
             }
@@ -88,12 +87,10 @@ namespace TESTER
             }
 
             return json;
-
         }
-
-        public string Change_litrs(User user)
+        public string ChangeLitrsAmount(User user) // функция изменения значения литров пользователя - успех "CHANGED"
         {
-            string json = "error";
+            string json = "UNCHANGED";
             string query = $"UPDATE Users SET liters = '{user.User_litrs}' WHERE login='{user.User_login}'";
 
             SqlConnection connection = new SqlConnection(connectString);
@@ -102,8 +99,8 @@ namespace TESTER
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
-                Query registered = new Query("update");
-                json = JsonConvert.SerializeObject(registered);
+                Query result = new Query("CHANGED");
+                json = JsonConvert.SerializeObject(result);
 
                 connection.Close();
             }
@@ -114,39 +111,32 @@ namespace TESTER
 
             return json;
         }
-        public string TakeMessages(User user)
+        public string TakeMessages(User user) // функция скачки сообщения пользователя - успех "TAKENMESS"
         {
-            string json = null;
-            string error = null;
-            string query = $"SELECT sName, time, text FROM Messages WHERE aName = '{user.User_name}'";
+            string json = null, error = null;
+            string query = $"SELECT sName, time, text FROM Messages WHERE aID = '{user.User_id}'";
+            Console.WriteLine(query);
             List<Message> messages = new List<Message>();
-
-
             SqlConnection connection = new SqlConnection(connectString);
+
             try
             {
                 connection.Open();
-
                 SqlCommand command = new SqlCommand(query, connection);
-
                 SqlDataReader reader = command.ExecuteReader();
-
 
                 if (reader.HasRows)
                 {
-
                     while (reader.Read())
                     {
-
                         messages.Add(new Message(
                            reader[0].ToString(),
                            Convert.ToDateTime(reader[1].ToString()),
                            reader[2].ToString()
                            ));
                     }
-                    Query responce = new Query("USERMESSAGES", messages);
-
-                    json = JsonConvert.SerializeObject(responce);
+                    Query result = new Query("TAKENMESS", messages);
+                    json = JsonConvert.SerializeObject(result);
 
                 }
                 else
@@ -160,6 +150,120 @@ namespace TESTER
                 connection.Close();
             }
             return json != null ? json : error;
+        }
+        public string SendMessage(Message message) // функция отправки сообщения - успех "SENT"
+        {
+            string date = $"'{message.Time.Day }.{message.Time.Month}.{message.Time.Year}'";
+            string json = "UNSENT";
+
+            string query = $"INSERT INTO Messages VALUES (" +
+                $"{Convert.ToInt32(message.senderID)}," +
+                $"{Convert.ToInt32(message.adressID)}," +
+                $"'{message.senderName}'," +
+                $"'{message.adressName}'," +
+                $" {date}," +
+                $"'{message.Text}')";
+            SqlConnection connection = new SqlConnection(connectString);
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    Query result = new Query("SENT");
+                    json = JsonConvert.SerializeObject(result);
+                }
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+            }
+
+            return json;
+        }
+        public string TakeCars(User user) // функция скачки машин пользователя - успех "TAKENCARS"
+        {
+            string json = null, error = null;
+
+            string query = $"SELECT * FROM Cars WHERE user_id = '{user.User_id}'";
+            List<Car> cars = new List<Car>();
+            SqlConnection connection = new SqlConnection(connectString);
+
+            try
+            {
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+
+                        cars.Add(new Car(
+                           reader[0].ToString(),
+                           reader[1].ToString(),
+                           reader[2].ToString(),
+                           Convert.ToInt32(reader[3].ToString()),
+                           reader[4].ToString(),
+                           reader[5].ToString(),
+                           reader[6].ToString(),
+                          Convert.ToInt32(reader[7].ToString())
+                           ));
+                    }
+                    Query result = new Query("TAKENCARS", cars);
+                    json = JsonConvert.SerializeObject(result);
+
+
+                }
+                else
+                    error = "Ошибка! У вас нет машин!";
+                reader.Close();
+                connection.Close();
+            }
+            catch
+            {
+                error = "Ошибка! Сервер не смог получить данные из БД";
+                connection.Close();
+            }
+            return json != null ? json : error;
+        }
+        public string AddCar(Car car) // функция добавления машины - успех "ADDED"
+        {
+            string json = "UNADDED";
+
+            string query = $"INSERT INTO Cars VALUES (" +
+                $"'{car.Car_region}'," +
+                $"'{car.Car_describtion}'," +
+                $" {car.Car_old}," +
+                $"'{car.Car_numbers}'," +
+                $"'{car.Car_mark}'," +
+                $"'{car.Car_brand}'," +
+                $"{car.id_of_owner})";
+
+            Console.WriteLine(query);
+            SqlConnection connection = new SqlConnection(connectString);
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    Query result = new Query("ADDED");
+                    json = JsonConvert.SerializeObject(result);
+                }
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+            }
+
+            return json;
         }
     }
 

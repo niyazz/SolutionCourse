@@ -456,5 +456,6 @@
             <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Width="140 " Content="Литры" Click="ToLitrsPage_Click" Margin="0,0,-9,0" />
 
         </StackPanel>
+        <Button x:Name="News" Content="Новости" HorizontalAlignment="Left" Margin="129,288,0,0" VerticalAlignment="Top" Width="114" Click="News_Click"/>
     </Grid>
 </Window>

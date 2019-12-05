@@ -201,7 +201,7 @@
                              Opacity="0.5"
                              Margin="64,228,72,52" Visibility="Hidden" TextAlignment="Justify"/>
         </Grid>
-        <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top">
+        <Button Width="52" Height="46"  RenderTransformOrigin="0.75,3.505" HorizontalAlignment="Center" Margin="0,613,0,0" VerticalAlignment="Top" Click="Button_Click">
             <Button.Template>
                 <ControlTemplate  TargetType="Button">
                     <Grid>

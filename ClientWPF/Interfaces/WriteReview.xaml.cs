@@ -86,7 +86,7 @@ namespace ClientWPF.Interfaces
 
         private void SendReview_Click(object sender, RoutedEventArgs e)
         {
-            Review review = new Review(AllNumbersofCar.SelectedValue.ToString(), TextOfReview.Text);
+            Review review = new Review();
            review.carNumber = AllNumbersofCar.SelectedValue.ToString();
            review.Text = TextOfReview.Text;
             //

@@ -75,6 +75,13 @@ namespace ClientWPF
             this.Close();
         }
 
+        private void News_Click(object sender, RoutedEventArgs e)
+        {
+            News news = new News(user);
+            news.Show();
+            this.Close();
+        }
+
         //private void friends_Click(object sender, RoutedEventArgs e)
         //{
         //    friends friends = new friends(user, q);

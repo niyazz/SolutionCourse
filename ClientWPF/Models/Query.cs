@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClientWPF.Models;
 
 
 namespace ClientWPF
@@ -14,11 +15,12 @@ namespace ClientWPF
         public Car Car { get; set; }
         public Message Message { get; set; }
         public Review Review { get; set; }
+        public classNews New { get; set; }
         public List<Car> Cars { get; set; }
         public List<Message> Messages { get; set; }
         public List<Friends> Friends { get; set; }
         public List<Review> Reviews { get; set; }
-
+        public List<classNews> News { get; set; }
         public Query()
         { }
         public Query(string type)
@@ -34,6 +36,11 @@ namespace ClientWPF
         {
             this.Type = type;
             this.Message = obj;
+        }
+        public Query(string type, classNews obj)
+        {
+            this.Type = type;
+            this.New = obj;
         }
         public Query(string type, Review obj)
         {
@@ -61,6 +68,11 @@ namespace ClientWPF
         {
             this.Type = type;
             this.Reviews = array;
+        }
+        public Query(string type, List<classNews> array)
+        {
+            this.Type = type;
+            this.News = array;
         }
     }
 }

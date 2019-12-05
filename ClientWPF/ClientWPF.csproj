@@ -68,6 +68,9 @@
     <Compile Include="Interfaces\AddCarWindow.xaml.cs">
       <DependentUpon>AddCarWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\NewsWindow.xaml.cs">
+      <DependentUpon>NewsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\ReviewsAboutMe.xaml.cs">
       <DependentUpon>ReviewsAboutMe.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,7 @@
     <Compile Include="Interfaces\CarsWindow.xaml.cs">
       <DependentUpon>CarsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClassNews.cs" />
     <Compile Include="Models\Friends.cs" />
     <Compile Include="Models\Groups.cs" />
     <Compile Include="Interfaces\LitrsWindow.xaml.cs">
@@ -128,6 +132,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Interfaces\MessagesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaces\NewsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

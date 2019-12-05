@@ -177,8 +177,8 @@
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </StackPanel.Resources>
-                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Width="140" Content="LOGIN" Click=" Login_Click"/>
-                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" Content="REGISTER" Click="ToRegisterPage_Click" Width="145"/>
+                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Width="140" Content="Вход" Click=" Login_Click"/>
+                    <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" Content="Регистрация" Click="ToRegisterPage_Click" Width="145"/>
                 </StackPanel>
                 <!--<Button Width="100" Height="40" Content="LOGIN" Margin="60,0,60,0" Click="sendToServ_Click"/>-->
                 <!--<Button Width="100" Height="40" Content="REGISTER" Click="Button_Click"/>-->

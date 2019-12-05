@@ -15,6 +15,7 @@ using System.Windows.Media;
 using Newtonsoft.Json;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ClientWPF.Interfaces;
 
 namespace ClientWPF
 {
@@ -60,7 +61,18 @@ namespace ClientWPF
 
         private void ToSettingsPage_Click(object sender, RoutedEventArgs e)
         {
+            UserFriends userFriends = new UserFriends(user);
+            userFriends.Show();
+            this.Close();
 
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ReviewsAboutMe reviewsAboutMe = new ReviewsAboutMe(user);
+            reviewsAboutMe.Show();
+            this.Close();
         }
 
         //private void friends_Click(object sender, RoutedEventArgs e)

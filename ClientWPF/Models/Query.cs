@@ -13,6 +13,7 @@ namespace ClientWPF
         public User User { get; set; }
         public Car Car { get; set; }
         public Message Message { get; set; }
+        public Review Review { get; set; }
         public List<Car> Cars { get; set; }
         public List<Message> Messages { get; set; }
         public List<Friends> Friends { get; set; }
@@ -34,6 +35,11 @@ namespace ClientWPF
             this.Type = type;
             this.Message = obj;
         }
+        public Query(string type, Review obj)
+        {
+            this.Type = type;
+            this.Review = obj;
+        }
         public Query(string type, Car obj)
         {
             this.Type = type;
@@ -49,6 +55,12 @@ namespace ClientWPF
         {
             this.Type = type;
             this.Messages = array;
+        }
+
+        public Query(string type, List<Review> array)
+        {
+            this.Type = type;
+            this.Reviews = array;
         }
     }
 }

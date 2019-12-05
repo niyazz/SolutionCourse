@@ -8,16 +8,16 @@ namespace ClientWPF
 {
     public class Review
     {
-        public int UserID;
+        public string carNumber;
 
         public string Text;
 
         public Review()
         { }
 
-        public Review(int userId, string text)
+        public Review(string carNumber, string text)
         {
-            this.UserID = userId;
+            this.carNumber = carNumber;
             this.Text = text;
         }
     }

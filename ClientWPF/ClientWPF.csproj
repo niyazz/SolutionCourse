@@ -68,6 +68,15 @@
     <Compile Include="Interfaces\AddCarWindow.xaml.cs">
       <DependentUpon>AddCarWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ReviewsAboutMe.xaml.cs">
+      <DependentUpon>ReviewsAboutMe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\UserFriends.xaml.cs">
+      <DependentUpon>UserFriends.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\WriteReview.xaml.cs">
+      <DependentUpon>WriteReview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Car.cs" />
     <Compile Include="Interfaces\CarsWindow.xaml.cs">
       <DependentUpon>CarsWindow.xaml</DependentUpon>
@@ -123,6 +132,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Interfaces\RegisterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaces\ReviewsAboutMe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaces\UserFriends.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Interfaces\WriteReview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

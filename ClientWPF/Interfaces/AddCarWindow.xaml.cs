@@ -32,7 +32,7 @@ namespace ClientWPF
 
         private void BackClick_ToCarsPage(object sender, RoutedEventArgs e)
         {
-            CarsPage carPage = new CarsPage(user, cars);
+            CarsPage carPage = new CarsPage(user);
             carPage.Show();
             this.Close();
         }

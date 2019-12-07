@@ -50,26 +50,26 @@ namespace ClientWPF.Interfaces
 
             InitializeComponent();
 
-            //if (responce.Contains("Ошибка!") == false)
-            //{
-            //    Query queryResult = JsonConvert.DeserializeObject<Query>(responce);
-            //    this.news = queryResult.news;
-            //    newsTextBox.Text = "";
-            //    for (int i = 0; i < news.Count; i++)
-            //    {
-            //        newsTextBox.Text += $"ОТ {news[i].senderName} - { news[i].Text} \n";
-            //    }
-            //}
-            //else
-            //{
-            //    newsTextBox.Text = "Новостей нет";
-            //}
-            ////
-            ////  завершение общения с сервером:
-            ////
-            //reader.Close();
-            //writer.Close();
-            //stream.Close();
+            if (responce.Contains("Ошибка!") == false)
+            {
+                Query queryResult = JsonConvert.DeserializeObject<Query>(responce);
+                this.news = queryResult.News;
+                newsTextBox.Text = "";
+                for (int i = 0; i < news.Count; i++)
+                {
+                    newsTextBox.Text += $"ОТ {news[i].senderName} - { news[i].Text} \n";
+                }
+            }
+            else
+            {
+                newsTextBox.Text = "Новостей нет";
+            }
+            //
+            //  завершение общения с сервером:
+            //
+            reader.Close();
+            writer.Close();
+            stream.Close();
         }
 
         private void BackClick_ToAccountPage(object sender, RoutedEventArgs e)
@@ -94,6 +94,7 @@ namespace ClientWPF.Interfaces
                 //
                 StreamWriter writer = new StreamWriter(stream);
                 classNews newnews = new classNews(0,user.User_name, DateTime.Now, inputNews.Text);
+                Console.WriteLine("calssnew = " + newnews.Text);
                 Query query = new Query("SENDNEWS", newnews);
                 string json = JsonConvert.SerializeObject(query);
                 Console.WriteLine(json);
@@ -103,28 +104,33 @@ namespace ClientWPF.Interfaces
                 //
                 //  получение ответа от сервера:
                 //
-                //StreamReader reader = new StreamReader(stream);
-                //Query result = JsonConvert.DeserializeObject<Query>(reader.ReadLine());
-                //switch (result.Type)
-                //{
-                //    case "SENT":
-                //        newsTextBox.Text = "";
-                //        for (int i = 0; i < news.Count; i++)
-                //        {
-                //            newsTextBox.Text += $"ОТ {news[i].senderName} - { news[i].Text} \n";
-                //        }
-                //        break;
-                //    case "UNSENT":
-                //        newsTextBox.Text = " ";
-                //        throw new Exception();
+                StreamReader reader = new StreamReader(stream);
+                Query result = JsonConvert.DeserializeObject<Query>(reader.ReadLine());
+                switch (result.Type)
+                {
+                    case "ADDED":
+                        newsTextBox.Text = "";
+                        for (int i = 0; i < news.Count; i++)
+                        {
+                            newsTextBox.Text += $"ОТ {news[i].senderName} - { news[i].Text} \n";
+                        }
+                        break;
+                    case "UNADDED":
+                        newsTextBox.Text = " ";
+                        throw new Exception();
 
-                //}
+                }
                 ////
                 ////  завершение общения с сервером:
                 ////
-                //reader.Close();
-                //writer.Close();
-                //stream.Close();
+                ///                
+                    newsTextBox.Text += $"ОТ {newnews.senderName} - { newnews.Text} \n";
+               
+                
+                reader.Close();
+                writer.Close();
+                stream.Close();
+                //newsTextBox.Text += $"ОТ {news[i].senderName} - { news[i].Text} \n";
             }
             catch
             {

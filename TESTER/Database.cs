@@ -265,6 +265,154 @@ namespace TESTER
 
             return json;
         }
+        public string AddReview(TESTER.Models.Review review) // функция отправки сообщения - успех "SENT"
+        {
+            string json = "UNADDED";
+
+            string query = $"INSERT INTO Reviews VALUES (" +
+                $"'{review.carNumber.Trim()}'," +        
+                $"'{review.Text}')";
+            Console.WriteLine(query);
+            SqlConnection connection = new SqlConnection(connectString);
+
+            try
+            {
+                connection.Open();
+                Console.WriteLine("200");
+                SqlCommand command = new SqlCommand(query, connection);
+                Console.WriteLine("201");
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("203");
+                    Query result = new Query("ADDED");
+                    json = JsonConvert.SerializeObject(result);
+                }
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+            }
+
+            return json;
+        }
+        public string AddNews(TESTER.Models.classNews news) // функция отправки сообщения - успех "SENT"
+        {
+            string date = $"'{news.Time.Day }.{news.Time.Month}.{news.Time.Year}'";
+            string json = "UNADDED";
+
+            string query = $"INSERT INTO News VALUES (" +
+                $"'{news.senderID}'," +
+                $" {date}," +
+                $"'{news.Text}'," +
+                $"'{news.senderName}'" +
+                $")";
+            Console.WriteLine(query);
+            SqlConnection connection = new SqlConnection(connectString);
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                Console.WriteLine("100");
+                if (command.ExecuteNonQuery() == 1)
+                {
+                    Query result = new Query("ADDED");
+                    json = JsonConvert.SerializeObject(result);
+                }
+                connection.Close();
+            }
+            catch
+            {
+                connection.Close();
+            }
+
+            return json;
+        }
+        public string TakeNews() // функция скачки машин пользователя - успех "TAKENCARS"
+        {
+            string json = null, error = null;
+
+            string query = $"SELECT senderName, time, text FROM News ";
+            List<TESTER.Models.classNews> news = new List<TESTER.Models.classNews>();
+            SqlConnection connection = new SqlConnection(connectString);
+
+            try
+            {
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+
+                        news.Add(new TESTER.Models.classNews(
+                          reader[0].ToString(),
+                          Convert.ToDateTime(reader[1].ToString()),
+                          reader[2].ToString()
+                           ));
+                    }
+                    Query result = new Query("TAKENNEWS", news);
+                    json = JsonConvert.SerializeObject(result);
+                }
+                else
+                    error = "Ошибка! Нет новостей!";
+                reader.Close();
+                connection.Close();
+            }
+            catch
+            {
+                error = "Ошибка! Сервер не смог получить данные из БД";
+                connection.Close();
+            }
+            return json != null ? json : error;
+        }
+        public string TakeReviews() // функция скачки машин пользователя - успех "TAKENCARS"
+        {
+            string json = null, error = null;
+
+            string query = $"SELECT carnumber, text FROM Reviews ";
+            List<TESTER.Models.Review> reviews = new List<TESTER.Models.Review>();
+            SqlConnection connection = new SqlConnection(connectString);
+
+            try
+            {
+
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+
+                        reviews.Add(new TESTER.Models.Review(
+                          reader[0].ToString(),
+                          reader[1].ToString()
+                           ));
+                    }
+                    Query result = new Query("TAKENREVIEWS", reviews);
+                    json = JsonConvert.SerializeObject(result);
+                }
+                else
+                    error = "Ошибка! Нет отзывов!";
+                reader.Close();
+                connection.Close();
+            }
+            catch
+            {
+                error = "Ошибка! Сервер не смог получить данные из БД";
+                connection.Close();
+            }
+            return json != null ? json : error;
+        }
     }
 
 }

@@ -30,6 +30,7 @@ namespace ClientWPF.Interfaces
             this.user = user;
             InitializeComponent();
         }
+           
         public ReviewsAboutMe(User user)
         {
             this.user = user;
@@ -47,13 +48,31 @@ namespace ClientWPF.Interfaces
             string json = JsonConvert.SerializeObject(query);
             writer.WriteLine(json);
             writer.Flush();
-
+            StreamReader reader = new StreamReader(stream);
+            string responce = reader.ReadLine().ToString();
             InitializeComponent();
-            //reviewsmeTextBox.Text = "";
-            //for (int i = 0; i < reviews.Count; i++)
-            //{
-            //    reviewsmeTextBox.Text += $" {reviews[i].Text} \n";
-            //}
+            if (responce.Contains("Ошибка!") == false)
+            {
+                Query queryResult = JsonConvert.DeserializeObject<Query>(responce);
+                this.reviews = queryResult.Reviews;
+                reviewsmeTextBox.Text = "";
+                for (int i = 0; i < reviews.Count; i++)
+                {
+                    reviewsmeTextBox.Text += $"ОТ {reviews[i].carNumber} -  {reviews[i].Text} \n";
+                }
+            }
+            else
+            {
+                
+                    reviewsmeTextBox.Text = "Новостей нет";
+                
+            }
+            //
+            //  завершение общения с сервером:
+            //
+            reader.Close();
+            writer.Close();
+            stream.Close();
 
 
         }

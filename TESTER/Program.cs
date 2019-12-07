@@ -50,6 +50,18 @@ namespace TESTER
                     case "ADDCAR":
                         operationResult = db.AddCar(query.Car);
                         break;
+                    case "SENDREVIEW":
+                        operationResult = db.AddReview(query.Review);
+                        break;
+                    case "SENDNEWS":
+                        operationResult = db.AddNews(query.New);
+                        break;
+                    case "TAKENEWS":
+                        operationResult = db.TakeNews();
+                        break;
+                    case "TAKEREVIEWS":
+                        operationResult = db.TakeReviews();
+                        break;
 
                 }
 

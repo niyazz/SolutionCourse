@@ -46,6 +46,7 @@ namespace ClientWPF.Interfaces
             //
             //  получение ответа от сервера:
             //
+
             InitializeComponent();
             StreamReader reader = new StreamReader(stream);
             string responce = reader.ReadLine().ToString();

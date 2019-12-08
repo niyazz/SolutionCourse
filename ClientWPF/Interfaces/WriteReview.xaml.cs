@@ -24,11 +24,11 @@ namespace ClientWPF.Interfaces
     {
         public User user;
         public List<Car> cars;
-       // public Review review;
+        // public Review review;
         public WriteReview(User user)
         {
             this.user = user;
-            
+
             //
             //  подключение к серверу:
             //
@@ -59,7 +59,7 @@ namespace ClientWPF.Interfaces
 
                 for (int i = 0; i < cars.Count; i++)
                 {
-                    AllNumbersofCar.Items.Add(cars[i].Car_numbers );
+                    AllNumbersofCar.Items.Add(cars[i].Car_numbers);
                 }
             }
 
@@ -84,12 +84,11 @@ namespace ClientWPF.Interfaces
             accPage.Show();
             this.Close();
         }
-
-        private void SendReview_Click(object sender, RoutedEventArgs e)
+        void send()
         {
             Review review = new Review();
-           review.carNumber = AllNumbersofCar.SelectedValue.ToString();
-           review.Text = TextOfReview.Text;
+            review.carNumber = AllNumbersofCar.SelectedValue.ToString();
+            review.Text = TextOfReview.Text;
             //
             //  подключение к серверу:
             //
@@ -107,6 +106,18 @@ namespace ClientWPF.Interfaces
             //
             //  получение ответа от сервера:
             //
+        }
+        private void SendReview_Click(object sender, RoutedEventArgs e)
+        {
+            bool send1 = false;
+            if (!string.IsNullOrEmpty(TextOfReview.Text))
+                send1 = true;
+            else //Если нет, он увидит сообщение, что что-то пошло не так
+            {
+                MessageBox.Show("Введите сообщение!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (send1)
+                send();
         }
     }
 }

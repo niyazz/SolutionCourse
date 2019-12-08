@@ -54,6 +54,65 @@ namespace ClientWPF
             }
             else MessageBox.Show("Значение достигло своего минимума", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+        void litrs()
+        {
+            if (user.User_litrs <= maxLitrs)
+            {
+                user.User_litrs = user.User_litrs + Convert.ToInt32(count.Text);
+                ChangeLitrs();
+            }
+            else MessageBox.Show("Значение достигло своего максимума", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        private void addlitr_Click(object sender, RoutedEventArgs e)
+        {
+            bool send1 = false;
+            if (!string.IsNullOrEmpty(cnumbercard.Text))
+            {
+                if (cnumbercard.Text.Length == 16)
+                {
+                    if (!string.IsNullOrEmpty(nameowner.Text))
+                    {
+                        if (!string.IsNullOrEmpty(cvc.Text))
+                        {
+                            if (cvc.Text.Length == 3)
+                            {
+                                if (!string.IsNullOrEmpty(count.Text))
+                                {
+                                    send1 = true;
+                                }
+                                else //Если нет, он увидит сообщение, что что-то пошло не так
+                                {
+                                    MessageBox.Show("Введите количество литров!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                }
+                            }
+                            else //Если нет, он увидит сообщение, что что-то пошло не так
+                            {
+                                MessageBox.Show("CVV состоит из 3 цифр!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
+                        }
+                        else //Если нет, он увидит сообщение, что что-то пошло не так
+                        {
+                            MessageBox.Show("Введите CVV!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    else //Если нет, он увидит сообщение, что что-то пошло не так
+                    {
+                        MessageBox.Show("Введите свое имя!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else //Если нет, он увидит сообщение, что что-то пошло не так
+                {
+                    MessageBox.Show("Номер карты состоит из 16 цифр!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else //Если нет, он увидит сообщение, что что-то пошло не так
+            {
+                MessageBox.Show("Введите номер карты!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (send1)
+                litrs();
+        }
+
         private void ChangeLitrs()
         {
             try

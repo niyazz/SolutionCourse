@@ -136,15 +136,82 @@
             </StackPanel.RenderTransform>
 
         </StackPanel>
-        <ListView x:Name="MyFriends" HorizontalAlignment="Left" Height="293" Margin="51,209,0,0" VerticalAlignment="Top" Width="271" Background="#600A4030" >
+        <ListView x:Name="MyFriends" HorizontalAlignment="Left" Height="193" Margin="51,209,0,0" VerticalAlignment="Top" Width="271" Background="#600A4030" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="AddFriend" Content="Button" HorizontalAlignment="Left" Margin="247,114,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.333,-1.1" Click="AddFriend_Click"/>
-        <TextBox x:Name="frinedIdInput" HorizontalAlignment="Left" Height="23" Margin="202,134,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="frinedIdInput" HorizontalAlignment="Left" Height="23" Margin="183,514,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" Background="Transparent" BorderThickness="0"/>
+        <Label Content="Введите ID пользователя:" Foreground="White" HorizontalAlignment="Left" Margin="33,504,0,0" VerticalAlignment="Top" />
+        <Border
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5" Margin="183,535,53,134"/>
+        <!--<Кнопка добавить друга>-->
+        <StackPanel   HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Margin="0,535,95,93" Width="140" >
+            <StackPanel.Resources>
+                <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
+                    <Border BorderBrush="#333" BorderThickness="1" CornerRadius="11" 
+                                TextBlock.Foreground="#ddd" Margin="0 0 10 0" MaxHeight="30"
+                                MinWidth="80" Padding="5" Name="myBorder">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF272727" Offset="0"></GradientStop>
+                                <GradientStop Color="#474747" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                              VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#777777" Offset="0"></GradientStop>
+                                        <GradientStop Color="#575757" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#939292" Offset="0"></GradientStop>
+                                        <GradientStop Color="#575757" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#444" Offset="0"></GradientStop>
+                                        <GradientStop Color="#222" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Opacity" Value="0.4"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </StackPanel.Resources>
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.315"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.523"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Добавить друга" Click="AddFriend_Click" Margin="-80,0,-45,0" Height="41" />
 
+        </StackPanel>
     </Grid>
 </Window>

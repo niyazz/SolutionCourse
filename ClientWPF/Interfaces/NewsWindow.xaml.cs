@@ -78,8 +78,7 @@ namespace ClientWPF.Interfaces
             accPage.Show();
             this.Close();
         }
-
-        private void Send_Click(object sender, RoutedEventArgs e)
+        void Send()
         {
             try
             {
@@ -93,7 +92,7 @@ namespace ClientWPF.Interfaces
                 //  отправка данных клиентом:
                 //
                 StreamWriter writer = new StreamWriter(stream);
-                classNews newnews = new classNews(0,user.User_name, DateTime.Now, inputNews.Text);
+                classNews newnews = new classNews(0, user.User_name, DateTime.Now, inputNews.Text);
                 Console.WriteLine("calssnew = " + newnews.Text);
                 Query query = new Query("SENDNEWS", newnews);
                 string json = JsonConvert.SerializeObject(query);
@@ -124,9 +123,9 @@ namespace ClientWPF.Interfaces
                 ////  завершение общения с сервером:
                 ////
                 ///                
-                    newsTextBox.Text += $"ОТ {newnews.senderName} - { newnews.Text} \n";
-               
-                
+                newsTextBox.Text += $"ОТ {newnews.senderName} - { newnews.Text} \n";
+
+
                 reader.Close();
                 writer.Close();
                 stream.Close();
@@ -136,6 +135,19 @@ namespace ClientWPF.Interfaces
             {
                 MessageBox.Show("Не удалось отправить новость!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+        }
+        private void Send_Click(object sender, RoutedEventArgs e)
+        {
+            bool send1 = false;
+            if (!string.IsNullOrEmpty(inputNews.Text))
+                send1 = true;
+            else //Если нет, он увидит сообщение, что что-то пошло не так
+            {
+                MessageBox.Show("Введите текст новости!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (send1)
+                Send();
 
         }
     }

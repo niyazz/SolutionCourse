@@ -187,7 +187,7 @@
             </StackPanel.RenderTransform>
 
         </StackPanel>
-        <TextBox x:Name="reviewsmeTextBox" HorizontalAlignment="Left" Height="336" Margin="33,187,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="307" FontSize="16" 
+        <TextBox x:Name="reviewsmeTextBox" HorizontalAlignment="Left" Height="336" Margin="33,187,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="307" FontSize="16" 
             BorderBrush="White" Background="#600A4030"
             Padding="10"/>
         <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Написать отзыв" Click="WriteReview" Margin="56,528,49,102" />

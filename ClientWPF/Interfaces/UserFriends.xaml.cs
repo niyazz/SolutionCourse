@@ -68,8 +68,7 @@ namespace ClientWPF.Interfaces
             accPage.Show();
             this.Close();
         }
-
-        private void AddFriend_Click(object sender, RoutedEventArgs e)
+        void AddFriend()
         {
             TcpClient clientSocket = new TcpClient();
             clientSocket.Connect("localhost", 908);
@@ -92,6 +91,19 @@ namespace ClientWPF.Interfaces
             {
                 MessageBox.Show(responce);
             }
+        }
+        private void AddFriend_Click(object sender, RoutedEventArgs e)
+        {
+            bool AddFriend1 = false;
+            if (!string.IsNullOrEmpty(frinedIdInput.Text))
+                AddFriend1 = true;
+            else //Если нет, он увидит сообщение, что что-то пошло не так
+            {
+                MessageBox.Show("Введите ID пользователя!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (AddFriend1)
+                AddFriend();
+
         }
     }
 }

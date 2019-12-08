@@ -64,8 +64,17 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <TextBox x:Name="inputMess" HorizontalAlignment="Left" Height="27" Margin="45,520,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="275" Background="Transparent" BorderThickness="0"/>
+        <TextBox x:Name="inputMess" HorizontalAlignment="Left" Height="27" Margin="45,520,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="285" Background="Transparent" BorderThickness="0"/>
         <!--<Button x:Name="Send" Content="Send" HorizontalAlignment="Left" Margin="292,552,0,0" VerticalAlignment="Top" Width="42" Height="34" Click="Send_Click"/>-->
+
+        <TextBlock Text="Сообщения"
+                           FontWeight="Light"
+                           FontFamily="helvetica"
+                           FontSize="22"
+                           Foreground="White"
+                            Margin="129,143,121,492"/>
+
+
         <!--<Кнопка отправить сообщение>-->
         <StackPanel   HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Margin="0,552,90,76" Width="140" >
             <StackPanel.Resources>
@@ -130,13 +139,15 @@
             <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Отправить сообщение" Click="Send_Click" Margin="-80,0,-45,0" Height="41" />
 
         </StackPanel>
-        <TextBox x:Name="messTextBox" HorizontalAlignment="Left" Height="336" Margin="33,149,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="307" FontSize="16" 
+        <TextBox x:Name="messTextBox" HorizontalAlignment="Left" Height="275" Margin="33,210,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="307" FontSize="16" 
             BorderBrush="White" Background="#600A4030"
             Padding="10"/>
         <Label Content="Введите сообщение:" HorizontalAlignment="Left" FontWeight="Light" FontFamily="helvetica" Foreground="White" Margin="33,485,0,0" VerticalAlignment="Top" Width="162" Height="30"/>
         <Border
                         Height="2"
                         Background="White"
-                        Opacity="0.5" Margin="45,545,50,124"/>
+                        Opacity="0.5" Margin="45,545,40,124"/>
+        <ComboBox x:Name="friends" HorizontalAlignment="Left" Margin="33,184,0,0" VerticalAlignment="Top" Width="307"/>
+
     </Grid>
 </Window>

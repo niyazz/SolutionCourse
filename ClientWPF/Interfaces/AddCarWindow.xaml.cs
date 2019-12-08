@@ -72,6 +72,7 @@ namespace ClientWPF
                 switch (responce.Type)
                 {
                     case "ADDED":
+                        MessageBox.Show("Вы успешно добавили автомобиль!");
                         break;
                     case "UNADDED":
                         throw new Exception();
@@ -91,7 +92,135 @@ namespace ClientWPF
         }
         private void RegisterCar_Click(object sender, RoutedEventArgs e)
         {
-            Registration_of_car();
+            bool mashina = false;
+            if (!string.IsNullOrEmpty(mark.Text))
+            {
+                if (mark.Text.Length <= 10)
+                {
+                    if (!string.IsNullOrEmpty(brand.Text))
+                    {
+                        if (brand.Text.Length <= 10)
+                        {
+                            if (!string.IsNullOrEmpty(description.Text))
+                            {
+                                if (description.Text.Length <= 5000)
+                                {
+                                    if (!string.IsNullOrEmpty(region.Text))
+                                    {
+                                        if (region.Text.Length <= 3)
+                                        {
+                                            if (!string.IsNullOrEmpty(old.Text))
+                                            {
+                                                if (!string.IsNullOrEmpty(numbers.Text))
+                                                {
+                                                    if (numbers.Text.Length == 6)
+                                                    {
+                                                        if ((numbers.Text[0] >= 'a') && (numbers.Text[0] <= 'z'))
+                                                        {
+                                                            if ((numbers.Text[1] >= '0') && (numbers.Text[1] <= '9'))
+                                                            {
+                                                                if ((numbers.Text[2] >= '0') && (numbers.Text[2] <= '9'))
+                                                                {
+                                                                    if ((numbers.Text[3] >= '0') && (numbers.Text[3] <= '9'))
+                                                                    {
+                                                                        if ((numbers.Text[4] >= 'a') && (numbers.Text[4] <= 'z'))
+                                                                        {
+                                                                            if ((numbers.Text[5] >= 'a') && (numbers.Text[5] <= 'z'))
+                                                                            {
+
+                                                                                mashina = true;
+                                                                            }
+                                                                            else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                                            {
+                                                                                MessageBox.Show("Шестой символ номера должен быть буквой!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                                            }
+
+                                                                        }
+                                                                        else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                                        {
+                                                                            MessageBox.Show("Пятый символ номера должен быть буквой!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                                        }
+
+                                                                    }
+                                                                    else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                                    {
+                                                                        MessageBox.Show("Четвертый символ номера должен быть цифой!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                                    }
+                                                                }
+                                                                else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                                {
+                                                                    MessageBox.Show("Третий символ номера должен быть цифой!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                                }
+                                                            }
+                                                            else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                            {
+                                                                MessageBox.Show("Второй символ номера должен быть цифой!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                            }
+                                                        }
+                                                        else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                        {
+                                                            MessageBox.Show("Первый символ номера должен быть буквой!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                        }
+                                                    }
+                                                    else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                    {
+                                                        MessageBox.Show("Номер должен состоять из 6 символов!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                    }
+                                                }
+                                                else //Если нет, он увидит сообщение, что что-то пошло не так
+                                                {
+                                                    MessageBox.Show("Введите номер!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                                }
+                                            }
+                                            else //Если нет, он увидит сообщение, что что-то пошло не так
+                                            {
+                                                MessageBox.Show("Введите год производства машины!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                            }
+                                        }
+                                        else //Если нет, он увидит сообщение, что что-то пошло не так
+                                        {
+                                            MessageBox.Show("Регион не может быть длинне 3 символов!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                        }
+                                    }
+                                    else //Если нет, он увидит сообщение, что что-то пошло не так
+                                    {
+                                        MessageBox.Show("Введите регион!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    }
+                                }
+                                else //Если нет, он увидит сообщение, что что-то пошло не так
+                                {
+                                    MessageBox.Show("Размер отзыва сликом большой!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                }
+                            }
+                            else //Если нет, он увидит сообщение, что что-то пошло не так
+                            {
+                                MessageBox.Show("Напишите отзыв о машине!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            }
+                        }
+                        else //Если нет, он увидит сообщение, что что-то пошло не так
+                        {
+                            MessageBox.Show("Слишком длинное у вас название модели автомобиля!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                    }
+                    else //Если нет, он увидит сообщение, что что-то пошло не так
+                    {
+                        MessageBox.Show("Введите модель автомобиля!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else //Если нет, он увидит сообщение, что что-то пошло не так
+                {
+                    MessageBox.Show("Слишком длинное у вас название марки автомобиля!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            else //Если нет, он увидит сообщение, что что-то пошло не так
+            {
+                MessageBox.Show("Введите марку автомобиля!", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (mashina)
+                Registration_of_car();
         }
+
+
     }
 }
+

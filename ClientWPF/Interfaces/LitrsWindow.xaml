@@ -136,7 +136,6 @@
                     <TranslateTransform Y="-0.523"/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="+" Click="Increase_Click" Margin="-45,0,95,0" Height="50" />
 
         </StackPanel>
         <!--<Кнопка ->-->
@@ -200,7 +199,79 @@
                     <TranslateTransform Y="-0.523"/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="-" Click="Dicrease_Click" Margin="-90,0,0,0" Height="50" HorizontalAlignment="Left" Width="91" />
+
+        </StackPanel>
+        <TextBox  x:Name="cnumbercard" HorizontalAlignment="Left" Height="23" Margin="76,392,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="228"/>
+        <TextBox  x:Name="nameowner" HorizontalAlignment="Left" Height="23" Margin="76,438,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
+        <TextBox  x:Name="cvc" HorizontalAlignment="Left" Height="23" Margin="240,438,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="64"/>
+        <TextBox x:Name="count" HorizontalAlignment="Left" Height="23" Margin="76,492,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="118"/>
+        <Label Content="Номер карты" HorizontalAlignment="Left" Margin="76,366,0,0" VerticalAlignment="Top" FontWeight="Light" FontFamily="helvetica" Foreground="White"/>
+        <Label Content="Имя владельца" HorizontalAlignment="Left" Margin="76,415,0,0" VerticalAlignment="Top" FontWeight="Light" FontFamily="helvetica" Foreground="White"/>
+        <Label Content="CVC" HorizontalAlignment="Left" Margin="240,412,0,0" VerticalAlignment="Top" FontWeight="Light" FontFamily="helvetica" Foreground="White"/>
+        <Label Content="Количество литров:" HorizontalAlignment="Left" Margin="76,466,0,0" VerticalAlignment="Top" FontWeight="Light" FontFamily="helvetica" Foreground="White"/>
+        <Label Content="Добавить литры:" HorizontalAlignment="Left" Margin="76,340,0,0" VerticalAlignment="Top" Width="228" FontWeight="Light" FontFamily="helvetica" Foreground="White"/>
+        <!--<Кнопка пополнить литры>-->
+        <StackPanel   HorizontalAlignment="Right" RenderTransformOrigin="0.471,3.333" Margin="0,535,95,93" Width="140" >
+            <StackPanel.Resources>
+                <ControlTemplate x:Key="Button_Template" TargetType="{x:Type Button}">
+                    <Border BorderBrush="#333" BorderThickness="1" CornerRadius="11" 
+                                TextBlock.Foreground="#ddd" Margin="0 0 10 0" MaxHeight="30"
+                                MinWidth="80" Padding="5" Name="myBorder">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF272727" Offset="0"></GradientStop>
+                                <GradientStop Color="#474747" Offset="1"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <ContentPresenter RecognizesAccessKey="True" Margin="{TemplateBinding Padding}"
+                              VerticalAlignment="Center" HorizontalAlignment="Center"></ContentPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#777777" Offset="0"></GradientStop>
+                                        <GradientStop Color="#575757" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#939292" Offset="0"></GradientStop>
+                                        <GradientStop Color="#575757" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="myBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#444" Offset="0"></GradientStop>
+                                        <GradientStop Color="#222" Offset="1"></GradientStop>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="myBorder" Property="Opacity" Value="0.4"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </StackPanel.Resources>
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.315"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.523"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Button Template="{Binding Source={StaticResource ResourceKey=Button_Template}}" RenderTransformOrigin="1.194,3.333" Content="Пополнить" Click="addlitr_Click" Margin="-80,0,-45,0" Height="41" />
 
         </StackPanel>
     </Grid>

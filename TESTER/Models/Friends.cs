@@ -8,6 +8,7 @@ namespace TESTER.Models
     {
         public int UserID { get; set; }
         public int FriendID { get; set; }
+        public string friendName { get; set; }
 
 
         public Friends()
@@ -16,6 +17,11 @@ namespace TESTER.Models
         {
             this.FriendID = friendId;
             this.UserID = userId;
+        }
+        public Friends(int friendId, string friendName)
+        {
+            this.FriendID = friendId;
+            this.friendName = friendName;
         }
     }
 }

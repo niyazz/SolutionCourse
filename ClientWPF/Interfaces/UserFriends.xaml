@@ -143,6 +143,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="AddFriend" Content="Button" HorizontalAlignment="Left" Margin="247,114,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.333,-1.1" Click="AddFriend_Click"/>
+        <TextBox x:Name="frinedIdInput" HorizontalAlignment="Left" Height="23" Margin="202,134,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

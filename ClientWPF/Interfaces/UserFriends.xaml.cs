@@ -27,25 +27,31 @@ namespace ClientWPF.Interfaces
         public UserFriends(User user)
         {
             this.user = user;
-            //
-            //  подключение к серверу:
-            //
             TcpClient clientSocket = new TcpClient();
             clientSocket.Connect("localhost", 908);
             NetworkStream stream = clientSocket.GetStream();
-            //
-            //  отправка данных клиентом:
-            //
-            StreamWriter writer = new StreamWriter(stream);
             Query query = new Query("TAKEFRIENDS", user);
             string json = JsonConvert.SerializeObject(query);
+            StreamWriter writer = new StreamWriter(stream);
             writer.WriteLine(json);
             writer.Flush();
-            //
-            //  получение ответа от сервера:
-            //
+
             InitializeComponent();
 
+            StreamReader reader = new StreamReader(stream);
+            string responce = reader.ReadLine().ToString();
+            InitializeComponent();
+            if (responce.Contains("Ошибка!") == false)
+            {
+                Query queryResult = JsonConvert.DeserializeObject<Query>(responce);
+
+                this.user.Friends = queryResult.User.Friends;
+                for (int i = 0; i < user.Friends.Count; i++)
+                {
+                    MyFriends.Items.Add(user.Friends[i].friendName);
+                }
+            }
+           
         }
 
         public UserFriends(User user, List<Friends> friends)
@@ -61,6 +67,31 @@ namespace ClientWPF.Interfaces
             AccountPage accPage = new AccountPage(user);
             accPage.Show();
             this.Close();
+        }
+
+        private void AddFriend_Click(object sender, RoutedEventArgs e)
+        {
+            TcpClient clientSocket = new TcpClient();
+            clientSocket.Connect("localhost", 908);
+            NetworkStream stream = clientSocket.GetStream();
+            StreamWriter writer = new StreamWriter(stream);
+            Friends newFriends = new Friends(user.User_id, Convert.ToInt32(frinedIdInput.Text));
+            Query query = new Query("ADDFRIEND", newFriends, user);
+            string json = JsonConvert.SerializeObject(query);
+            writer.WriteLine(json);
+            writer.Flush();
+
+            StreamReader reader = new StreamReader(stream);
+            string responce = reader.ReadLine().ToString();
+
+            if (responce.Contains("Ошибка!") == false)
+            {
+                MessageBox.Show("Охуенна");
+            }
+            else
+            {
+                MessageBox.Show(responce);
+            }
         }
     }
 }

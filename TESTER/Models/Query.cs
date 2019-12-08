@@ -11,6 +11,7 @@ namespace TESTER
     {
         public string Type { get; set; }
         public User User { get; set; }
+        public Friends Friend { get; set; }
         public Car Car { get; set; }
         public Message Message { get; set; }
         public List<Message> Messages { get; set; }
@@ -48,6 +49,11 @@ namespace TESTER
         {
             this.Type = type;
             this.Review = obj;
+        }
+        public Query(string type, Friends obj)
+        {
+            this.Type = type;
+            this.Friend = obj;
         }
         public Query(string type, Car obj)
         {

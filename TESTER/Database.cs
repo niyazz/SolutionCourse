@@ -4,6 +4,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Data.Sql;
 using Newtonsoft.Json;
+using TESTER.Models;
 
 namespace TESTER
 {
@@ -12,7 +13,7 @@ namespace TESTER
         public string connectString { get; set; }
         public Database()
         {
-            this.connectString = @"Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True";
+            this.connectString = @"Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True";
             // Data Source=DESKTOP-9CPJ5HD;Initial Catalog=CourseWork;Integrated Security=True - Z
             // Data Source=DESKTOP-3DSDFUN\NIZZOSQL;Initial Catalog=CourseWork;Integrated Security=True - N
         }
@@ -20,6 +21,7 @@ namespace TESTER
         public string GetUser(User user) // функция входа в аккаунт - успех "LOGINED"
         {
             string json = null, error = null;
+            List<Friends> friends = new List<Friends>();
             string query = $"SELECT * FROM Users WHERE login = '{user.User_login}' AND password = '{user.User_password}'";
             SqlConnection connection = new SqlConnection(connectString);
             try
@@ -40,9 +42,24 @@ namespace TESTER
                         reader[6].ToString(),
                         reader[7].ToString()
                         );
+                    connection.Close();
+                    connection.Open();
+                    
+                    query = $"SELECT friend_id, friend_name FROM Friends WHERE user_id = {logined.User_id}";
+                    command = new SqlCommand(query, connection);
+                    reader = command.ExecuteReader();
 
-                    Query result = new Query("LOGINED", logined);
-                    json = JsonConvert.SerializeObject(result);
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            friends.Add(new Friends(Convert.ToInt32(reader[0].ToString()), reader[1].ToString()));
+                        }
+                        logined.Friends = friends;
+
+                    }
+                        Query result = new Query("LOGINED", logined);
+                        json = JsonConvert.SerializeObject(result);
                 }
                 else
                     error = "Ошибка! Такого пользователя не существует";
@@ -265,7 +282,7 @@ namespace TESTER
 
             return json;
         }
-        public string AddReview(TESTER.Models.Review review) // функция отправки сообщения - успех "SENT"
+        public string AddReview(TESTER.Models.Review review) // функция добавления отзыва - успех "ADDED"
         {
             string json = "UNADDED";
 
@@ -296,7 +313,7 @@ namespace TESTER
 
             return json;
         }
-        public string AddNews(TESTER.Models.classNews news) // функция отправки сообщения - успех "SENT"
+        public string AddNews(TESTER.Models.classNews news) // функция добавления новости - успех "ADDED"
         {
             string date = $"'{news.Time.Day }.{news.Time.Month}.{news.Time.Year}'";
             string json = "UNADDED";
@@ -328,7 +345,7 @@ namespace TESTER
 
             return json;
         }
-        public string TakeNews() // функция скачки машин пользователя - успех "TAKENCARS"
+        public string TakeNews() // функция скачки новостей пользователя - успех "TAKENNEWS"
         {
             string json = null, error = null;
 
@@ -403,6 +420,93 @@ namespace TESTER
                 }
                 else
                     error = "Ошибка! Нет отзывов!";
+                reader.Close();
+                connection.Close();
+            }
+            catch
+            {
+                error = "Ошибка! Сервер не смог получить данные из БД";
+                connection.Close();
+            }
+            return json != null ? json : error;
+        }
+        public string AddFriend(User user,Friends friends) // функция добавления друга - успех "ADDED"
+        {
+            string json = "UNADDED";
+            string query = $"SELECT name, login FROM Users WHERE id = {friends.FriendID}";
+            SqlConnection connection = new SqlConnection(connectString);
+            try
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    query = $"INSERT INTO Friends VALUES({friends.UserID}, {friends.FriendID}, '{reader[0].ToString()}')";
+                    connection.Close();
+                    connection.Open();
+              
+                    command = new SqlCommand(query, connection);
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+
+                        query = $"INSERT INTO Friends VALUES({friends.FriendID}, {friends.UserID}, '{user.User_name}')";
+                        connection.Close();
+                        connection.Open();
+
+                        command = new SqlCommand(query, connection);
+                        if (command.ExecuteNonQuery() == 1)
+                        {
+                            Query result = new Query("ADDED");
+                            json = JsonConvert.SerializeObject(result);
+                            connection.Close();
+                        }
+
+                           
+                    }
+                }
+                else
+                {
+                    json = "Ошибка! Такого пользователя не существует"; 
+                }
+                
+            }
+            catch
+            {
+                connection.Close();
+            }
+
+            return json;
+        }
+        public string TakeFriends(User user) // функция скачки друзей пользователя - успех "TAKENFRIENDS"
+        {
+            string json = null, error = null;
+            List<Friends> friends = new List<Friends>();
+            string query = query = $"SELECT friend_id, friend_name FROM Friends WHERE user_id = {user.User_id}";
+
+            SqlConnection connection = new SqlConnection(connectString);
+
+            try
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        friends.Add(new Friends(Convert.ToInt32(reader[0].ToString()), reader[1].ToString()));
+                    }
+                    user.Friends = friends;
+                    Query result = new Query("TAKENFRIENDS", user);
+                    json = JsonConvert.SerializeObject(result);
+                }
+                else
+                    error = "Ошибка! Нет Друзей!";
                 reader.Close();
                 connection.Close();
             }

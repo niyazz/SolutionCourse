@@ -62,6 +62,12 @@ namespace TESTER
                     case "TAKEREVIEWS":
                         operationResult = db.TakeReviews();
                         break;
+                    case "ADDFRIEND":
+                        operationResult = db.AddFriend(query.User,query.Friend); 
+                        break;
+                    case "TAKEFRIENDS":
+                        operationResult = db.TakeFriends(query.User);
+                        break;
 
                 }
 
